@@ -17,8 +17,8 @@ In my data science projects, I spend a lot of time with the following tools:
 * a *terminal*, for navigation purposes;
 * a *text editor*, for coding (mostly);
 * a package manager.
- 
-In what follows, I outline how I like to setup these tools. As these setups are not set in stone, I will be updating this file whenever new steps are included or removed.
+
+In what follows, I outline how I like to setup these tools. I came to learn these setups through multiple blogs, and I hope to consolidate my own personal steps on this README.md file.I have tried my best to include some links to original sources whenever I can remember them. As a final introductory remark, these setups are not set in stone, I will be updating this file whenever new preferred steps are included or removed.
 
 ## **Xcode CommandLine Tools**
 
@@ -124,3 +124,33 @@ After restarting the terminal, you should see that $SHELL now is */usr/local/bin
 (Another approach that would have achieved the same effect would be to edit */etc/shell* first to add */usr/local/bin/zsh*, and then running *chsh -s /usr/local/bin/zsh*. The command chsh is used for **ch**anging **sh**ells.)
 
 In the end, make sure that the commands *which zsh* and *echo $SHELL* output the Homebrew zsh path, and that this path is */etc/shells*.
+
+## **Installing OH-MY-ZSH**
+
+To further leverage the capabilities of zsh, we now install ['Oh-My-Zsh'](https://github.com/ohmyzsh/ohmyzsh), a community-driven framework for managing our zsh configuration. To install it, I ran the following command on the terminal:
+
+```bash
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+You should now have a folder with the path $HOME/.oh-my-zsh, and also a zsh configuration file, $HOME/.zshrc . This file should have a line that sets an environmental variable: *export ZSH="/Users/hudson/.oh-my-zsh"* The variable $ZSH$ is (presumably) the bridge between zsh and oh-my-zsh.
+
+### **Setting a theme for ZSH: Powerlevel10k**
+
+One of the things zsh supports is themes. Themes interact with our terminal, and will help make it more appealing, and also display *useful* information organically (here are a few possibilities: how much memory/CPU is being used; the current git branch in a local directory; whether files tracked by git have been changed).
+
+My favourite theme is [Powerlevel10k](https://github.com/romkatv/powerlevel10k). It is actually possible to install it without OH-MY-ZSH (and in fact that is [how](https://github.com/romkatv/powerlevel10k#manual) I did it, at first). However, since oh-my-zsh is supposed to manage our configurations, we will take the path of using oh-my-zsh. Start with the command:
+
+```bash
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+
+This adds the Powerlevel10k files to the oh-my-zsh custom themes folder. Now modify the config file *~/.zshrc* and set **ZSH_THEME="powerlevel10k/powerlevel10k**". Restart the terminal for this to take effect. You may be presented with the powerlevel10k configuration wizard. I am going to register my choices for it at a later date. If you are not presented with this wizard, or if you would like to run it again, simply type *p10k configure* on the terminal.
+
+After running the configuration wizard, you should now have the file *~/.p10k.zsh*. This file contains configuration details regarding the theme itself, and can be customized directly (the configuration wizard presumably simply sets certain variables to specific values).
+
+#### Installing the Nerd Fonts 
+Coming...
+
+#### Enhancing Powerlevel10k
+In this step, we modify the *~./p10k.zsh* file directly to further enhance the usefulness of this theme.

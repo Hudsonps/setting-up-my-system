@@ -1,6 +1,6 @@
-# Setting up my work platform
+# **Setting up my work platform**
 
-- [Setting up my work platform](#setting-up-my-work-platform)
+- [**Setting up my work platform**](#setting-up-my-work-platform)
   - [**Xcode CommandLine Tools**](#xcode-commandline-tools)
   - [**Keyboard**](#keyboard)
     - [**Increasing the key repeat speed**](#increasing-the-key-repeat-speed)

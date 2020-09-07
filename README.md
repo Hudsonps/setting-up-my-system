@@ -1,22 +1,39 @@
 # setting-up-my-system
 
+- [setting-up-my-system](#setting-up-my-system)
+  - [Instructions for setting up my working platform](#instructions-for-setting-up-my-working-platform)
+  - [**Xcode CommandLine Tools**](#xcode-commandline-tools)
+  - [**Keyboard**](#keyboard)
+    - [**Increasing the key repeat speed**](#increasing-the-key-repeat-speed)
+  - [**Package Manager: Homebrew**](#package-manager-homebrew)
+  - [**Terminal: iTerm2**](#terminal-iterm2)
+    - [**Installing iTerm2**](#installing-iterm2)
+    - [**Setting up a color theme for iTerm2**](#setting-up-a-color-theme-for-iterm2)
+      - [My Personal Color Theme Recommendations](#my-personal-color-theme-recommendations)
+  - [**Shell: ZSH**](#shell-zsh)
+    - [**Installing ZSH**](#installing-zsh)
+  - [**Installing OH-MY-ZSH**](#installing-oh-my-zsh)
+    - [**Setting a theme for ZSH: Powerlevel10k**](#setting-a-theme-for-zsh-powerlevel10k)
+      - [**Installing the Nerd Fonts**](#installing-the-nerd-fonts)
+      - [**Enhancing Powerlevel10k**](#enhancing-powerlevel10k)
+
 ## Instructions for setting up my working platform
 
 I put a lot of value on the user experience associated with the tools I use for work. The time spent on a project should be as fun as it can be, and, for me, that involves leveraging powerful existing resources to make coding or simply dealing with the machine in more general terms more pleasing. In my case, a more pleasing experience comes with things that allow me to (for instance):
 
-* reduce the amount of memorization;
-* have a more appealing and informative interface;
-* reduce the amount of text I must type in order to achieve something;
-* standardize my code on certain ways;
-* enhance the functionality and usefulness of popular tools.
+- reduce the amount of memorization;
+- have a more appealing and informative interface;
+- reduce the amount of text I must type in order to achieve something;
+- standardize my code on certain ways;
+- enhance the functionality and usefulness of popular tools.
 
 The list above is not exhaustive, but it serves to give you an idea of what the steps outlined here are trying to achieve. I keep in mind that a system may not always be as configurable as I would like, especially when it involves remote servers, but the truth is that a lot of my work is still local, so I still see a lot of value in setting up a more appealing local platform.
 
 In my data science projects, I spend a lot of time with the following tools:
 
-* a *terminal*, for navigation purposes;
-* a *text editor*, for coding (mostly);
-* a package manager.
+- a *terminal*, for navigation purposes;
+- a *text editor*, for coding (mostly);
+- a package manager.
 
 In what follows, I outline how I like to setup these tools. I came to learn these setups through multiple blogs, and I hope to consolidate my own personal steps on this README.md file.I have tried my best to include some links to original sources whenever I can remember them. As a final introductory remark, these setups are not set in stone, I will be updating this file whenever new preferred steps are included or removed.
 
@@ -24,8 +41,8 @@ In what follows, I outline how I like to setup these tools. I came to learn thes
 
 If you are on a Mac, certain things will not work before you install the *xcode commandline tools*. To install them:
 
-* Open your terminal;
-* Run:
+- Open your terminal;
+- Run:
 
 ```bash
     xcode-select --install
@@ -47,8 +64,8 @@ We will be typing a lot, so we want to make the keyboard experience more pleasan
 
 We will be pressing some keys often -- for instance, *delete* to erase parts of lines we type on the terminal. To make this process faster, click on the  icon on the top left, then:
 
-*  ⟶ System Preferences ⟶ Keyboard ⟶ Keyboard
-* Set *Key Repeat* to *Fast* and *Delay Until Repeat* to *Short*
+-  ⟶ System Preferences ⟶ Keyboard ⟶ Keyboard
+- Set *Key Repeat* to *Fast* and *Delay Until Repeat* to *Short*
   
 ## **Package Manager: Homebrew**
 
@@ -74,22 +91,21 @@ Run the following on your terminal:
 
 To make iTerm2 look more appealing, I like to have some color theme options. You can find a few [here](https://iterm2colorschemes.com).
 
-
 The themes are encoded in *.itermcolor* files. To import a custom theme to iTerm2:
 
-* Open iTerm2;
-* iTerm2 ⟶ Preferences ⟶ Profiles ⟶ Colors;
-* On the Colors tab, you will see *Color Presets* on your bottom right;
-* Color Presets ⟶ Import ⟶ <file.itermcolor>
+- Open iTerm2;
+- iTerm2 ⟶ Preferences ⟶ Profiles ⟶ Colors;
+- On the Colors tab, you will see *Color Presets* on your bottom right;
+- Color Presets ⟶ Import ⟶ <file.itermcolor>
 
 Hint: you can import multiple themes at once by having them on the same folder and pressing Shift + ↓ or Shift + ↑ after selecting a file.
 
 #### My Personal Color Theme Recommendations
 
-* Ayu-Dark
-* Ayu-Mirage
-* Night-Owl
-* Dracula
+- Ayu-Dark
+- Ayu-Mirage
+- Night-Owl
+- Dracula
 
 ## **Shell: ZSH**
 
@@ -149,8 +165,10 @@ This adds the Powerlevel10k files to the oh-my-zsh custom themes folder. Now mod
 
 After running the configuration wizard, you should now have the file *~/.p10k.zsh*. This file contains configuration details regarding the theme itself, and can be customized directly (the configuration wizard presumably simply sets certain variables to specific values).
 
-#### Installing the Nerd Fonts 
+#### **Installing the Nerd Fonts** 
+
 Coming...
 
-#### Enhancing Powerlevel10k
+#### **Enhancing Powerlevel10k**
+
 In this step, we modify the *~./p10k.zsh* file directly to further enhance the usefulness of this theme.

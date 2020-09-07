@@ -1,7 +1,6 @@
-# setting-up-my-system
+# Setting up my work platform
 
-- [setting-up-my-system](#setting-up-my-system)
-  - [Instructions for setting up my working platform](#instructions-for-setting-up-my-working-platform)
+- [Setting up my work platform](#setting-up-my-work-platform)
   - [**Xcode CommandLine Tools**](#xcode-commandline-tools)
   - [**Keyboard**](#keyboard)
     - [**Increasing the key repeat speed**](#increasing-the-key-repeat-speed)
@@ -16,8 +15,6 @@
     - [**Setting a theme for ZSH: Powerlevel10k**](#setting-a-theme-for-zsh-powerlevel10k)
       - [**Installing the Nerd Fonts**](#installing-the-nerd-fonts)
       - [**Enhancing Powerlevel10k**](#enhancing-powerlevel10k)
-
-## Instructions for setting up my working platform
 
 I put a lot of value on the user experience associated with the tools I use for work. The time spent on a project should be as fun as it can be, and, for me, that involves leveraging powerful existing resources to make coding or simply dealing with the machine in more general terms more pleasing. In my case, a more pleasing experience comes with things that allow me to (for instance):
 

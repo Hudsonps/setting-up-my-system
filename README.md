@@ -9,12 +9,17 @@
     - [**Installing iTerm2**](#installing-iterm2)
     - [**Setting up a color theme for iTerm2**](#setting-up-a-color-theme-for-iterm2)
       - [My Personal Color Theme Recommendations](#my-personal-color-theme-recommendations)
+      - [Optional: Bulk-removing color themes from iTerm2](#optional-bulk-removing-color-themes-from-iterm2)
   - [**Shell: ZSH**](#shell-zsh)
     - [**Installing ZSH**](#installing-zsh)
   - [**Installing OH-MY-ZSH**](#installing-oh-my-zsh)
+    - [Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)](#enabling-autosuggestions-and-syntax-highlighting-on-zsh-through-oh-my-zsh)
     - [**Setting a theme for ZSH: Powerlevel10k**](#setting-a-theme-for-zsh-powerlevel10k)
       - [**Installing the Nerd Fonts**](#installing-the-nerd-fonts)
       - [**Enhancing Powerlevel10k**](#enhancing-powerlevel10k)
+  - [**Python**](#python)
+  - [**Text Editor: Visual Studio Code (VSCode)**](#text-editor-visual-studio-code-vscode)
+    - [**Installing VSCode**](#installing-vscode)
 
 I put a lot of value on the user experience associated with the tools I use for work. The time spent on a project should be as fun as it can be, and, for me, that involves leveraging powerful existing resources to make coding or simply dealing with the machine in more general terms more pleasing. In my case, a more pleasing experience comes with things that allow me to (for instance):
 
@@ -95,14 +100,21 @@ The themes are encoded in *.itermcolor* files. To import a custom theme to iTerm
 - On the Colors tab, you will see *Color Presets* on your bottom right;
 - Color Presets ⟶ Import ⟶ <file.itermcolor>
 
-Hint: you can import multiple themes at once by having them on the same folder and pressing Shift + ↓ or Shift + ↑ after selecting a file.
+Hint: you can import multiple themes at once by having them on the same folder and pressing Shift + ↓ or Shift + ↑ after selecting a file. I do not suggest importing too many themes at once because iTerm2 does not have an official way to delete multiple themes at once.
 
 #### My Personal Color Theme Recommendations
 
-- Ayu-Dark
-- Ayu-Mirage
-- Night-Owl
-- Dracula
+- [Ayu](https://github.com/hwyncho/ayu-iTerm)
+
+#### Optional: Bulk-removing color themes from iTerm2
+
+[Here](https://gist.github.com/kecebongsoft/11312110) is a way to get rid of too many color terms for iTerm2 at once. However, I found it easier to follow the instructions [here](https://iterm2.com/faq.html) and restore iTerm2 to its default settings by running:
+
+```bash
+defaults delete com.googlecode.iterm2
+```
+
+(I am not entirely sure whether this must be done while at *~/Library/Preferences/*, but you can double-check.)
 
 ## **Shell: ZSH**
 
@@ -148,6 +160,23 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 You should now have a folder with the path $HOME/.oh-my-zsh, and also a zsh configuration file, $HOME/.zshrc . This file should have a line that sets an environmental variable: *export ZSH="/Users/hudson/.oh-my-zsh"* The variable $ZSH$ is (presumably) the bridge between zsh and oh-my-zsh.
 
+### Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)
+
+- Run the following lines to add the zsh-autosuggestions and zsh-syntax-highlighting packages to the set of plugins by oh-my-zsh:
+
+```bash
+    sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestion
+    sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+- Add the plugins to the *.zshrc* file:
+  plugins=(
+      ...
+      zsh-autosuggestions
+      zsh-syntax-highlighting
+      ...
+  )
+
 ### **Setting a theme for ZSH: Powerlevel10k**
 
 One of the things zsh supports is themes. Themes interact with our terminal, and will help make it more appealing, and also display *useful* information organically (here are a few possibilities: how much memory/CPU is being used; the current git branch in a local directory; whether files tracked by git have been changed).
@@ -162,10 +191,28 @@ This adds the Powerlevel10k files to the oh-my-zsh custom themes folder. Now mod
 
 After running the configuration wizard, you should now have the file *~/.p10k.zsh*. This file contains configuration details regarding the theme itself, and can be customized directly (the configuration wizard presumably simply sets certain variables to specific values).
 
-#### **Installing the Nerd Fonts** 
+#### **Installing the Nerd Fonts**
 
-Coming...
+If you follow the configuration wizard, a nerd font should be installed during the process. You can find more fonts [here](https://github.com/ryanoasis/nerd-fonts). The nerd fonts are fonts patched with a high number of glyphs, which are used by Powerlevel10k to enhance the terminal looks.
 
 #### **Enhancing Powerlevel10k**
 
-In this step, we modify the *~./p10k.zsh* file directly to further enhance the usefulness of this theme.
+ The *~./p10k.zsh* file can be used to customized the prompts displayed on the left and on the right. Look up *POWERLEVEL9K_LEFT_PROMPT_ELEMENTS* and *POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS* and add or remove prompts as desired.
+
+## **Python**
+
+Python is a popular language for developing data science models. The Python version that comes with MacOS is quite obsolete, so we will install a newer one with Homebrew. To do so, run the folowing on your terminal:
+
+```sh
+brew install python
+```
+
+This should install python and pip, which is the package installer for python. Due to the MacOS python taking precedence over the Homebrew python, it is necessary to call the Homebrew python and pip with *python3* and *pip3* (this might not be enough if MacOS eventually makes python 3.x the default python). One way around that is to define an alias. For now, I am just going to use the suffix 3 explicitly.
+
+## **Text Editor: Visual Studio Code (VSCode)**
+
+One of the most important tools for a data scientist is the text editor. If using an editor remotely, you may not have much choice but to use whatever is available on the server. However, when working locally, I will go for the option that provides me the most comfort. There are many editors out there. In the context of data science work, I have had the chance ot use *Sublime*, *Atom* and *Visual Studio Code*. You can look up online for major differences between these editors -- and other options -- to make your call for an editor. I personally use VSCode because it has about the same features I have found in Sublime and Atom, but also comes with the unique feat of being able to run Jupyter notebooks inside the editor. I really enjoy this aspect, as it gives me the typical benefits of Jupyter coupled with any enhancements provided by the editor.
+
+### **Installing VSCode**
+
+Follow this [link](https://code.visualstudio.com/docs/setup/mac) for installing VSCode on MacOS.

@@ -12,14 +12,20 @@
       - [Optional: Bulk-removing color themes from iTerm2](#optional-bulk-removing-color-themes-from-iterm2)
   - [**Shell: ZSH**](#shell-zsh)
     - [**Installing ZSH**](#installing-zsh)
-  - [**Installing OH-MY-ZSH**](#installing-oh-my-zsh)
-    - [Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)](#enabling-autosuggestions-and-syntax-highlighting-on-zsh-through-oh-my-zsh)
-    - [**Setting a theme for ZSH: Powerlevel10k**](#setting-a-theme-for-zsh-powerlevel10k)
-      - [**Installing the Nerd Fonts**](#installing-the-nerd-fonts)
-      - [**Enhancing Powerlevel10k**](#enhancing-powerlevel10k)
+      - [Making MacOS use the Homebrew zsh](#making-macos-use-the-homebrew-zsh)
+  - [**Framework to manage ZSH: OH-MY-ZSH**](#framework-to-manage-zsh-oh-my-zsh)
+    - [**Installing OH-MY-ZSH**](#installing-oh-my-zsh)
+    - [**Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)**](#enabling-autosuggestions-and-syntax-highlighting-on-zsh-through-oh-my-zsh)
+  - [**Setting a theme for ZSH with OH-MY-ZSH: Powerlevel10k**](#setting-a-theme-for-zsh-with-oh-my-zsh-powerlevel10k)
+    - [**Installing the Nerd Fonts**](#installing-the-nerd-fonts)
+    - [**Enhancing Powerlevel10k**](#enhancing-powerlevel10k)
   - [**Python**](#python)
   - [**Text Editor: Visual Studio Code (VSCode)**](#text-editor-visual-studio-code-vscode)
     - [**Installing VSCode**](#installing-vscode)
+    - [**Calling VSCode via the command line**](#calling-vscode-via-the-command-line)
+    - [**Integrating the VSCode terminal with ZSH**](#integrating-the-vscode-terminal-with-zsh)
+    - [**Beautifying VSCode**](#beautifying-vscode)
+    - [**Useful Extensions**](#useful-extensions)
 
 I put a lot of value on the user experience associated with the tools I use for work. The time spent on a project should be as fun as it can be, and, for me, that involves leveraging powerful existing resources to make coding or simply dealing with the machine in more general terms more pleasing. In my case, a more pleasing experience comes with things that allow me to (for instance):
 
@@ -83,7 +89,7 @@ The standard terminal was useful so far, but in my opinion it feels pretty flat.
 
 ### **Installing iTerm2**
 
-Run the following on your terminal:
+- Run the following on your terminal:
 
 ```bash
     brew cask install iterm2
@@ -122,37 +128,45 @@ In Unix, the shell is the command interpretor. A more powerful shell should make
 
 ### **Installing ZSH**
 
-On your terminal, simply run:
+- On your terminal, simply run:
 
 ```bash
 brew cask install zsh
 ```
 
-Confirm that it was installed by running:
+- Confirm that it was installed by running:
 
 ```bash
 ls -la /usr/local/bin/zs*
 ```
 
+#### Making MacOS use the Homebrew zsh
+
 If you are using the most recent versions of MacOS, it is likely that you already have ZSH on your system, even before the installation. If you run *which zsh* before the installation by homebrew, the output will most likely be */bin/zsh*. That is the MacOS ZSH. If *zsh* is calling the Homebrew version, you should most likely see */usr/local/bin/zsh*.
 
-After I installed zsh with homebrew, I am getting the path associated with homebrew. However, when running echo $SHELL, I am still getting */usr/bin* as the output. This suggests that the shell being used is still the standard MacOS zsh. That is further corroborated by inspecting the file */etc/shells* (you can run *cat /etc/shells* to do that). This file contains a list of possible shells that can be used by the OS. I do not see the Homebrew zsh listed there, so we need to fix that. 
+After I installed zsh with homebrew, *which zsh* gives me the path associated with homebrew. However, when running echo $SHELL, I still get */usr/bin* as the output. This suggests that the shell used is still the standard MacOS zsh. That is further corroborated by inspecting the file */etc/shells* (you can run *cat /etc/shells* to do that). This file contains a list of possible shells that can be used by the OS. I do not see the Homebrew zsh listed there, so we need to fix that.
 
-To do that, I followed the method outlined in this [page](https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/) and ran:
+To make the Homebrew zsh the default shell:
+
+- Following this [page](https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/), run:
 
 ```bash
 sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 ```
 
-After restarting the terminal, you should see that $SHELL now is */usr/local/bin/zsh* and that the command *which zsh* also prints */usr/local/bin/zsh*. That said, this method somehow does not include this path on the */etc/shell* file, so I am not entirely sure whether there is a downside to this method. However, the */etc/shells* file contains a comment that states that *Ftpd will not allow users using one of the listed shells to connect*. Thus, to be on the safe side I also added the Homebrew zsh path to */etc/shells*.)
+- Open the file */etc/shells* (this file lists all shells available) and add */usr/local/bin/zsh* to a new line at the end
 
-(Another approach that would have achieved the same effect would be to edit */etc/shell* first to add */usr/local/bin/zsh*, and then running *chsh -s /usr/local/bin/zsh*. The command chsh is used for **ch**anging **sh**ells.)
+(Another approach that would have achieved the same effect would be to edit */etc/shells* first to add */usr/local/bin/zsh*, and then running *chsh -s /usr/local/bin/zsh*. The command chsh is used for **ch**anging **sh**ells.)
 
 In the end, make sure that the commands *which zsh* and *echo $SHELL* output the Homebrew zsh path, and that this path is */etc/shells*.
 
-## **Installing OH-MY-ZSH**
+## **Framework to manage ZSH: OH-MY-ZSH**
 
-To further leverage the capabilities of zsh, we now install ['Oh-My-Zsh'](https://github.com/ohmyzsh/ohmyzsh), a community-driven framework for managing our zsh configuration. To install it, I ran the following command on the terminal:
+To further leverage the capabilities of zsh, we now install ['Oh-My-Zsh'](https://github.com/ohmyzsh/ohmyzsh), a community-driven framework for managing our zsh configuration.
+
+### **Installing OH-MY-ZSH**
+
+- Run the following command on the terminal:
 
 ```bash
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -160,7 +174,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 You should now have a folder with the path $HOME/.oh-my-zsh, and also a zsh configuration file, $HOME/.zshrc . This file should have a line that sets an environmental variable: *export ZSH="/Users/hudson/.oh-my-zsh"* The variable $ZSH$ is (presumably) the bridge between zsh and oh-my-zsh.
 
-### Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)
+### **Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)**
 
 - Run the following lines to add the zsh-autosuggestions and zsh-syntax-highlighting packages to the set of plugins by oh-my-zsh:
 
@@ -177,25 +191,33 @@ You should now have a folder with the path $HOME/.oh-my-zsh, and also a zsh conf
       ...
   )
 
-### **Setting a theme for ZSH: Powerlevel10k**
+## **Setting a theme for ZSH with OH-MY-ZSH: Powerlevel10k**
 
 One of the things zsh supports is themes. Themes interact with our terminal, and will help make it more appealing, and also display *useful* information organically (here are a few possibilities: how much memory/CPU is being used; the current git branch in a local directory; whether files tracked by git have been changed).
 
-My favourite theme is [Powerlevel10k](https://github.com/romkatv/powerlevel10k). It is actually possible to install it without OH-MY-ZSH (and in fact that is [how](https://github.com/romkatv/powerlevel10k#manual) I did it, at first). However, since oh-my-zsh is supposed to manage our configurations, we will take the path of using oh-my-zsh. Start with the command:
+My favourite theme is [Powerlevel10k](https://github.com/romkatv/powerlevel10k). It is actually possible to install it without OH-MY-ZSH (and in fact that is [how](https://github.com/romkatv/powerlevel10k#manual) I did it, at first). However, since oh-my-zsh is supposed to manage our configurations, we will take the path of using oh-my-zsh.
+
+- Start with the command below (which the P10K files to the oh-my-zsh custom themes folder):
 
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
-This adds the Powerlevel10k files to the oh-my-zsh custom themes folder. Now modify the config file *~/.zshrc* and set **ZSH_THEME="powerlevel10k/powerlevel10k**". Restart the terminal for this to take effect. You may be presented with the powerlevel10k configuration wizard. I am going to register my choices for it at a later date. If you are not presented with this wizard, or if you would like to run it again, simply type *p10k configure* on the terminal.
+- Now modify the config file *~/.zshrc* and set **ZSH_THEME="powerlevel10k/powerlevel10k**";
+- Restart the terminal for this to take effect.
 
-After running the configuration wizard, you should now have the file *~/.p10k.zsh*. This file contains configuration details regarding the theme itself, and can be customized directly (the configuration wizard presumably simply sets certain variables to specific values).
+You may be presented with the powerlevel10k configuration wizard. Here are my choices for it:
+*nerdfont-complete + powerline, small icons, rainbow, unicode, 12h time, angled separators, sharp heads, flat tails, 2 lines, disconnected, no frame, sparse, many icons, concise, transient_prompt, instant_prompt=verbose*.
 
-#### **Installing the Nerd Fonts**
+After running the configuration wizard, you should now have the file *~/.p10k.zsh*. This file contains configuration details regarding the theme itself, and can be customized directly.
 
-If you follow the configuration wizard, a nerd font should be installed during the process. You can find more fonts [here](https://github.com/ryanoasis/nerd-fonts). The nerd fonts are fonts patched with a high number of glyphs, which are used by Powerlevel10k to enhance the terminal looks.
+Hint: you can trigger the configuration wizard with the command *p10k configure*. I believe that running this overwrites the config file *~/.p10k.zsh*, so make a copy of it if you customized it extensively (the wizard may do that already, but I do not remember for sure.)
 
-#### **Enhancing Powerlevel10k**
+### **Installing the Nerd Fonts**
+
+If you follow the Powerlevel10k configuration wizard, a nerd font should be installed during the process. You can find more fonts [here](https://github.com/ryanoasis/nerd-fonts). The nerd fonts are fonts patched with a high number of glyphs, which are used by Powerlevel10k to enhance the terminal looks. The font can be changed in the settings for iTerm2.
+
+### **Enhancing Powerlevel10k**
 
  The *~./p10k.zsh* file can be used to customized the prompts displayed on the left and on the right. Look up *POWERLEVEL9K_LEFT_PROMPT_ELEMENTS* and *POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS* and add or remove prompts as desired.
 
@@ -207,7 +229,9 @@ Python is a popular language for developing data science models. The Python vers
 brew install python
 ```
 
-This should install python and pip, which is the package installer for python. Due to the MacOS python taking precedence over the Homebrew python, it is necessary to call the Homebrew python and pip with *python3* and *pip3* (this might not be enough if MacOS eventually makes python 3.x the default python). One way around that is to define an alias. For now, I am just going to use the suffix 3 explicitly.
+This should install python and pip, which is the package installer for python.
+
+Due to the MacOS python taking precedence over the Homebrew python, it is necessary to call the Homebrew python and pip with *python3* and *pip3* (this might not be enough if MacOS eventually makes python 3.x the default python). One way around that is to define aliases. For now, I am just going to use the suffix 3 explicitly.
 
 ## **Text Editor: Visual Studio Code (VSCode)**
 
@@ -216,3 +240,40 @@ One of the most important tools for a data scientist is the text editor. If usin
 ### **Installing VSCode**
 
 Follow this [link](https://code.visualstudio.com/docs/setup/mac) for installing VSCode on MacOS.
+
+### **Calling VSCode via the command line**
+
+- With VSCode open, type *Command + Shift + P* to call the command palette;
+- Search for "Shell Command: Install 'code' command in PATH", and select it;
+- Restart your terminal and you should now be able to open VSCode with the command *code*.
+
+### **Integrating the VSCode terminal with ZSH**
+
+VSCode has an integrated terminal. To bring it up, press *Control + `*. To integrate it with zsh and our previous configurations:
+
+- call the command palette (*Command + Shift + P*) and look up for *Preferences: Open Settings (JSON)*
+- add the following to the JSON:
+
+  ```json
+      "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+      "terminal.integrated.fontFamily": "Hack Nerd Font"
+  ```
+
+The first line contains the path to the zsh installed by Homebrew; the second line is the font type, which you can choose at your convenience.
+
+### **Beautifying VSCode**
+
+We can rely on extensions to improve the looks of VSCode. Here are some extensions I recommend:
+
+- Material Icon Theme
+- Ayu
+
+### **Useful Extensions**
+
+Here is a list of useful extensions and what to expect from them:
+
+|Extension|Description|
+|---|---|
+|Markdownlint|Linter for Markdown, to ensure some format standards (I used it to write this file!)|
+|Python|VSCode extension to support coding in Python|
+|Visual Studio IntelliCode|AI-driven Intellisense for VSCode}

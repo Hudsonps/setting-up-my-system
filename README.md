@@ -16,7 +16,7 @@
   - [**Framework to manage ZSH: OH-MY-ZSH**](#framework-to-manage-zsh-oh-my-zsh)
     - [**Installing OH-MY-ZSH**](#installing-oh-my-zsh)
     - [**Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)**](#enabling-autosuggestions-and-syntax-highlighting-on-zsh-through-oh-my-zsh)
-  - [**Setting a theme for ZSH with OH-MY-ZSH: Powerlevel10k**](#setting-a-theme-for-zsh-with-oh-my-zsh-powerlevel10k)
+  - [**Setting a theme for ZSH with OH-MY-ZSH: Powerlevel10k (P10k)**](#setting-a-theme-for-zsh-with-oh-my-zsh-powerlevel10k-p10k)
     - [**Installing the Nerd Fonts**](#installing-the-nerd-fonts)
     - [**Enhancing Powerlevel10k**](#enhancing-powerlevel10k)
   - [**Python**](#python)
@@ -26,6 +26,10 @@
     - [**Integrating the VSCode terminal with ZSH**](#integrating-the-vscode-terminal-with-zsh)
     - [**Beautifying VSCode**](#beautifying-vscode)
     - [**Useful Extensions**](#useful-extensions)
+  - [**Python Linters**](#python-linters)
+    - [**Installing the Linters**](#installing-the-linters)
+    - [**Using the Linters with VSCode**](#using-the-linters-with-vscode)
+      - [**Enabling Linters on VSCode**](#enabling-linters-on-vscode)
 
 I put a lot of value on the user experience associated with the tools I use for work. The time spent on a project should be as fun as it can be, and, for me, that involves leveraging powerful existing resources to make coding or simply dealing with the machine in more general terms more pleasing. In my case, a more pleasing experience comes with things that allow me to (for instance):
 
@@ -74,7 +78,7 @@ We will be pressing some keys often -- for instance, *delete* to erase parts of 
 
 -  ⟶ System Preferences ⟶ Keyboard ⟶ Keyboard
 - Set *Key Repeat* to *Fast* and *Delay Until Repeat* to *Short*
-  
+
 ## **Package Manager: Homebrew**
 
 [Homebrew](https://brew.sh) is a package manager that will make our lives easier when it comes to... managing packages. Run this on the terminal to install it.
@@ -82,6 +86,8 @@ We will be pressing some keys often -- for instance, *delete* to erase parts of 
 ```bash
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
+
+Hint: this [link](https://osxdaily.com/2018/07/05/where-homebrew-packages-installed-location-mac/) has more details on how to find the Homebrew packages installed on Mac.
 
 ## **Terminal: iTerm2**
 
@@ -191,7 +197,7 @@ You should now have a folder with the path $HOME/.oh-my-zsh, and also a zsh conf
       ...
   )
 
-## **Setting a theme for ZSH with OH-MY-ZSH: Powerlevel10k**
+## **Setting a theme for ZSH with OH-MY-ZSH: Powerlevel10k (P10k)**
 
 One of the things zsh supports is themes. Themes interact with our terminal, and will help make it more appealing, and also display *useful* information organically (here are a few possibilities: how much memory/CPU is being used; the current git branch in a local directory; whether files tracked by git have been changed).
 
@@ -263,7 +269,7 @@ The first line contains the path to the zsh installed by Homebrew; the second li
 
 ### **Beautifying VSCode**
 
-We can rely on extensions to improve the looks of VSCode. Here are some extensions I recommend:
+We can rely on extensions to improve the looks of VSCode. Here are some extensions for improving visuals I recommend:
 
 - Material Icon Theme
 - Ayu
@@ -276,4 +282,40 @@ Here is a list of useful extensions and what to expect from them:
 |---|---|
 |Markdownlint|Linter for Markdown, to ensure some format standards (I used it to write this file!)|
 |Python|VSCode extension to support coding in Python|
-|Visual Studio IntelliCode|AI-driven Intellisense for VSCode}
+|Visual Studio IntelliCode|AI-driven Intellisense for VSCode}|
+|Trailing Spaces| Highlights trailing space for easy removal|
+|Python Docstring Generator|Extension with docstring templates for python functions|
+|Code Runner|Allows one to run code snippets for multiple languages|
+|Better Comments|Helps with categorizing comments|
+|GitLens|Allows one to visualize code authorship (and much more) inside VSCode|
+|Path Intellisense|Completes filenames|
+
+In the following links, you can find a few more sources:
+<https://medium.com/issuehunt/10-visual-studio-code-extensions-for-python-development-de0be51bbeed>
+<https://www.shopify.ca/partners/blog/best-visual-studio-code-extensions>
+
+## **Python Linters**
+
+A linter is a tool that analyzes code and flag errors and violations of certain stylistic conventions. They are helpful in spotting bugs and errors earlier on, and in ensuring that the code conforms to some standards, which may make it easier to read and follow by peers.
+
+In Python, there are several linters. This [page](https://github.com/vintasoftware/python-linters-and-code-analysis) contains a very good summary of different linters and their functionalities in Python. Not all of them do the same thing, so I recommend using multiple linters. I have not yet figured out the ideal ones to have around, so I am currently combining *Pylint* and *Flake8*. I am also considering enabling *pydocstyle*, since it looks like its functionality is to inspect docstrings, as opposed to the code itself.
+
+### **Installing the Linters**
+
+- To install these extensions, run *pip3 install <linter_name>.
+
+### **Using the Linters with VSCode**
+
+Though linters can be run directly (for example, to examine a file called *mycode.py* with Flake8, run *flake8 mycode.py*), I find them more useful when their functionality is coupled with a texteditor that leverages their diagnosis and displays it on the code itself. To take advantage of that we must enable linters on VSCode.
+
+#### **Enabling Linters on VSCode**
+
+- call the command palette (*Command + Shift + P*), look up *Python: Enable Linting* and click on it
+
+Remark: if you do the above while having a folder/project already open in VSCode, this might modify the local settings (settings which are applicable only to that project). To make sure whether it was done globally, use the command palette to open the global JSON settings and make sure there is a line stating *"python.linting.enabled": true*.
+
+- under the command palette again, look up for Python: Select Linter. You should see options like Pylint, Flake8 and others; pick one, which will apply this setting to the local settings JSON if a project is open. If you want that particular setting to be global, open the global JSON settings and make sure a line like *"python.linting.pylintEnabled": true* or *"python.linting.flake8Enabled": true* is around
+
+- if you want to have multiple linters active, use the settings JSON (either global or local) directly; for example, to have pylint, flake8 and pydocstyle enabled, have the parameters *python.linting.pylintEnabled*, *python.linting.flake8Enabled* and *python.linting.pydocstyle* all set to true.
+
+Moreover, you can control how verbose these linters should be as well. Pylint, flake8 and pydocstyle use the following parameters on the settings JSON: *python.linting.pylintArgs*, *python.linting.flake8Args* and *python.pydocstyleArgs*", respectively. I usually set *python.linting.pylintArgs": ["--enable=F,E,W,C,R"]*, where the letters correspond to different kinds of messages pylint may display (F: fatal; E: error; W: warning; C: convention; R: refactoring). For flake8, the options are F, E and W. For pycodestyle, the options are E and W.

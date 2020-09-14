@@ -13,6 +13,8 @@
   - [**Shell: ZSH**](#shell-zsh)
     - [**Installing ZSH**](#installing-zsh)
       - [Making MacOS use the Homebrew zsh](#making-macos-use-the-homebrew-zsh)
+  - [**Version control: git**](#version-control-git)
+    - [**Installing git (with Homebrew)**](#installing-git-with-homebrew)
   - [**Framework to manage ZSH: OH-MY-ZSH**](#framework-to-manage-zsh-oh-my-zsh)
     - [**Installing OH-MY-ZSH**](#installing-oh-my-zsh)
     - [**Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)**](#enabling-autosuggestions-and-syntax-highlighting-on-zsh-through-oh-my-zsh)
@@ -165,6 +167,22 @@ sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 (Another approach that would have achieved the same effect would be to edit */etc/shells* first to add */usr/local/bin/zsh*, and then running *chsh -s /usr/local/bin/zsh*. The command chsh is used for **ch**anging **sh**ells.)
 
 In the end, make sure that the commands *which zsh* and *echo $SHELL* output the Homebrew zsh path, and that this path is */etc/shells*.
+
+## **Version control: git**
+
+Though MacOS comes with a git, I am going to use the version provided by brew.
+
+### **Installing git (with Homebrew)**
+
+- Run the command
+
+```sh
+brew install git
+```
+
+- Restart the terminal
+
+To confirm that it worked, run *which git*. You should see */usr/local/bin/git*.
 
 ## **Framework to manage ZSH: OH-MY-ZSH**
 

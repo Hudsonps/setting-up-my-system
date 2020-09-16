@@ -76,7 +76,7 @@ To confirm that it worked, enter this on your terminal:
 `xcode-select -p`
 
 
-You should see something like *`/Library/Developer/CommandLineTools`*.
+You should see something like `/Library/Developer/CommandLineTools`.
 
 ## **Keyboard**
 
@@ -150,14 +150,14 @@ In Unix, the shell is the command interpretor. A more powerful shell should make
 brew cask install zsh
 ```
 
-Confirm that it was installed by running: *`bash
-ls -la /usr/local/bin/zs*`*.
+Confirm that it was installed by running: `bash
+ls -la /usr/local/bin/zs*`.
 
 #### **Making MacOS use the Homebrew zsh**
 
-If you are using the most recent versions of MacOS, it is likely that you already have ZSH on your system, even before the installation. If you run *`which zsh`* before the installation by homebrew, the output will most likely be *`/bin/zsh`*. That is the MacOS ZSH. If *`zsh`* is calling the Homebrew version, you should most likely see *`/usr/local/bin/zsh`*.
+If you are using the most recent versions of MacOS, it is likely that you already have ZSH on your system, even before the installation. If you run `which zsh` before the installation by homebrew, the output will most likely be `/bin/zsh`. That is the MacOS ZSH. If `zsh` is calling the Homebrew version, you should most likely see `/usr/local/bin/zsh`.
 
-After I installed zsh with homebrew, *`which zsh`* gives me the path associated with homebrew. However, when running echo $SHELL, I still get *`/usr/bin`* as the output. This suggests that the shell used is still the standard MacOS zsh. That is further corroborated by inspecting the file *`/etc/shells`* (you can run *`cat /etc/shells`* to do that). This file contains a list of possible shells that can be used by the OS. I do not see the Homebrew zsh listed there, so we need to fix that.
+After I installed zsh with homebrew, `which zsh` gives me the path associated with homebrew. However, when running echo $SHELL, I still get `/usr/bin` as the output. This suggests that the shell used is still the standard MacOS zsh. That is further corroborated by inspecting the file `/etc/shells` (you can run `cat /etc/shells` to do that). This file contains a list of possible shells that can be used by the OS. I do not see the Homebrew zsh listed there, so we need to fix that.
 
 To make the Homebrew zsh the default shell:
 
@@ -167,11 +167,11 @@ To make the Homebrew zsh the default shell:
 sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 ```
 
-- Open the file *`/etc/shells`* (this file lists all shells available) and add *`/usr/local/bin/zsh`* to a new line at the end
+- Open the file `/etc/shells` (this file lists all shells available) and add `/usr/local/bin/zsh` to a new line at the end
 
-(Another approach that would have achieved the same effect would be to edit *`/etc/shells`* first to add *`/usr/local/bin/zsh`*, and then running *`chsh -s /usr/local/bin/zsh`*. The command chsh is used for **ch**anging **sh**ells.)
+(Another approach that would have achieved the same effect would be to edit `/etc/shells` first to add `/usr/local/bin/zsh`, and then running `chsh -s /usr/local/bin/zsh`. The command chsh is used for **ch**anging **sh**ells.)
 
-In the end, make sure that the commands *`which zsh`* and *`echo $SHELL`* output the Homebrew zsh path, and that this path is *`/etc/shells`*.
+In the end, make sure that the commands `which zsh` and `echo $SHELL` output the Homebrew zsh path, and that this path is `/etc/shells`.
 
 ## **Version control: git**
 
@@ -187,7 +187,7 @@ brew install git
 
 - Restart the terminal
 
-To confirm that it worked, run *`which git`*. You should see *`/usr/local/bin/git`*.
+To confirm that it worked, run `which git`. You should see `/usr/local/bin/git`.
 
 ### **Configuring git**
 
@@ -201,7 +201,7 @@ To config your git username and email, run the following commands
   git config --global user.email [your email address here]
   ```
 
-To check that the changes took effect, inspect the file *`.gitconfig`* in your home directory.
+To check that the changes took effect, inspect the file `.gitconfig` in your home directory.
 
 ## **Framework to manage ZSH: OH-MY-ZSH**
 
@@ -215,7 +215,7 @@ To further leverage the capabilities of zsh, we now install ['Oh-My-Zsh'](https:
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-You should now have a folder with the path *`$HOME/.oh-my-zsh`*, and also a zsh configuration file, *`$HOME/.zshrc`* . This file should have a line that sets an environmental variable: *`export ZSH="/Users/hudson/.oh-my-zsh"`* The variable $ZSH$ is (presumably) the bridge between zsh and oh-my-zsh.
+You should now have a folder with the path `$HOME/.oh-my-zsh`, and also a zsh configuration file, `$HOME/.zshrc` . This file should have a line that sets an environmental variable: `export ZSH="/Users/hudson/.oh-my-zsh"` The variable $ZSH$ is (presumably) the bridge between zsh and oh-my-zsh.
 
 ### **Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)**
 
@@ -226,7 +226,7 @@ You should now have a folder with the path *`$HOME/.oh-my-zsh`*, and also a zsh 
     sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
-- Add the plugins to the *`.zshrc`* file:
+- Add the plugins to the `.zshrc` file:
   plugins=(
       ...
       zsh-autosuggestions
@@ -246,15 +246,15 @@ My favourite theme is [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
-- Now modify the config file *`~/.zshrc`* and set *`ZSH_THEME="powerlevel10k/powerlevel10k`*";
+- Now modify the config file `~/.zshrc` and set `ZSH_THEME="powerlevel10k/powerlevel10k`";
 - Restart the terminal for this to take effect.
 
 You may be presented with the powerlevel10k configuration wizard. Here are my choices for it:
 *nerdfont-complete + powerline, small icons, rainbow, unicode, 12h time, angled separators, sharp heads, flat tails, 2 lines, disconnected, no frame, sparse, many icons, concise, transient_prompt, instant_prompt=verbose*.
 
-After running the configuration wizard, you should now have the file *`~/.p10k.zsh`*. This file contains configuration details regarding the theme itself, and can be customized directly.
+After running the configuration wizard, you should now have the file `~/.p10k.zsh`. This file contains configuration details regarding the theme itself, and can be customized directly.
 
-Hint: you can trigger the configuration wizard with the command *`p10k configure`*. I believe that running this overwrites the config file *`~/.p10k.zsh`*, so make a copy of it if you customized it extensively (the wizard may do that already, but I do not remember for sure.)
+Hint: you can trigger the configuration wizard with the command `p10k configure`. I believe that running this overwrites the config file `~/.p10k.zsh`, so make a copy of it if you customized it extensively (the wizard may do that already, but I do not remember for sure.)
 
 ### **Installing the Nerd Fonts**
 
@@ -262,7 +262,7 @@ If you follow the Powerlevel10k configuration wizard, a nerd font should be inst
 
 ### **Enhancing Powerlevel10k**
 
- The *`~./p10k.zsh`* file can be used to customized the prompts displayed on the left and on the right. Look up *POWERLEVEL9K_LEFT_PROMPT_ELEMENTS* and *POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS* and add or remove prompts as desired.
+ The `~./p10k.zsh` file can be used to customized the prompts displayed on the left and on the right. Look up *POWERLEVEL9K_LEFT_PROMPT_ELEMENTS* and *POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS* and add or remove prompts as desired.
 
 ## **Virtual Environments Manager: miniconda**
 
@@ -280,7 +280,7 @@ Python is a popular language for developing data science models. The Python vers
 
 ### **Installing Python**
 
-It is simple to install python using Homebrew with the command *`brew install python`*. However, we do not recommend this approach, as different projects may ask for different python versions. Instead, we will manage Python and its packages through miniconda, following this [guide](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
+It is simple to install python using Homebrew with the command `brew install python`. However, we do not recommend this approach, as different projects may ask for different python versions. Instead, we will manage Python and its packages through miniconda, following this [guide](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
 This is done essentially through a `.yml` file, which will contain instructions regarding the python version and required packages for a given environment. Here is what a minimum environment file would look like:
 
@@ -293,14 +293,14 @@ dependencies:
 - python=3.7
 ```
 
-To create the environment from that file -- say its name is `environment.yaml` -- , run: *`conda env create -f environment.yaml`*
-With this approach, an environment will be created at *`~/miniconda/envs/ml`*. It may be preferable to set the environment inside the project folder itself. To do so, change the command to *`conda env create --prefix ./envs -f environment.yaml`*.
+To create the environment from that file -- say its name is `environment.yaml` -- , run: `conda env create -f environment.yaml`
+With this approach, an environment will be created at `~/miniconda/envs/ml`. It may be preferable to set the environment inside the project folder itself. To do so, change the command to `conda env create --prefix ./envs -f environment.yaml`.
 
-Remark: it seems like, whenever *`--prefix`* is used, that actually takes precedence over the environment. Thus, we cannot refer to the environment through *`--name`* in commands, and must stick to *`--prefix`* while passing the full environment path.
+Remark: it seems like, whenever `--prefix` is used, that actually takes precedence over the environment. Thus, we cannot refer to the environment through `--name` in commands, and must stick to `--prefix` while passing the full environment path.
 
 In this example, the steps above will create an environment with Python 3.7 in our project folder.
 
-(A very minimal way of creating an environment that could be used by multiple projects with a given python version is to run `*conda create --name py35 python=3.5*`.)
+(A very minimal way of creating an environment that could be used by multiple projects with a given python version is to run `conda create --name py35 python=3.5`.)
 
 ### **Getting the list of all existing environments**
 
@@ -318,7 +318,7 @@ In this example, the steps above will create an environment with Python 3.7 in o
   conda activate ./envs
 ```
 
-You can double check that the environment was activated by running conda env list and checking which environment is singled out with a star (\*) symbol. If you installed Python with the environment file, you can also run *`which python`* to check that the environment path appears in the output.
+You can double check that the environment was activated by running conda env list and checking which environment is singled out with a star (\*) symbol. If you installed Python with the environment file, you can also run `which python` to check that the environment path appears in the output.
 
 ### **Listing packages installed in an environment**
 
@@ -358,7 +358,7 @@ Follow this [link](https://code.visualstudio.com/docs/setup/mac) for installing 
 
 ### **Integrating the VSCode terminal with ZSH**
 
-VSCode has an integrated terminal. To bring it up, press *Control + `*. To integrate it with zsh and our previous configurations:
+VSCode has an integrated terminal. To bring it up, press *Control + `. To integrate it with zsh and our previous configurations:
 
 - call the command palette (*Command + Shift + P*) and look up for *Preferences: Open Settings (JSON)*
 - add the following to the JSON:
@@ -405,11 +405,11 @@ In Python, there are several linters. This [page](https://github.com/vintasoftwa
 
 ### **Installing the Linters**
 
-- To install these extensions, run *`pip3 install <linter_name>`*.
+- To install these extensions, run `pip3 install <linter_name>`.
 
 ### **Using the Linters with VSCode**
 
-Though linters can be run directly (for example, to examine a file called *`mycode.py`* with Flake8, run *`flake8 mycode.py`*), I find them more useful when their functionality is coupled with a texteditor that leverages their diagnosis and displays it on the code itself. To take advantage of that we must enable linters on VSCode.
+Though linters can be run directly (for example, to examine a file called `mycode.py` with Flake8, run `flake8 mycode.py`), I find them more useful when their functionality is coupled with a texteditor that leverages their diagnosis and displays it on the code itself. To take advantage of that we must enable linters on VSCode.
 
 #### **Enabling Linters on VSCode**
 
@@ -426,4 +426,3 @@ Remark: if you do the above while having a folder/project already open in VSCode
 The verbosity of the linters Pylint, flake8 and pydocstyle use the following parameters on the settings JSON: *python.linting.pylintArgs*, *python.linting.flake8Args* and *python.pydocstyleArgs*", respectively (more info for additional linters can be found on the VSCode page). I usually set *python.linting.pylintArgs": ["--enable=F,E,W,C,R"]*, where the letters correspond to different kinds of messages pylint may display (F: fatal; E: error; W: warning; C: convention; R: refactoring). For flake8, the options are F, E and W. For pycodestyle, the options are E and W.
 
 ## **Controlling environments with VSCode**
-

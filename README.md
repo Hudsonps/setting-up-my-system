@@ -12,16 +12,24 @@
       - [Optional: Bulk-removing color themes from iTerm2](#optional-bulk-removing-color-themes-from-iterm2)
   - [**Shell: ZSH**](#shell-zsh)
     - [**Installing ZSH**](#installing-zsh)
-      - [Making MacOS use the Homebrew zsh](#making-macos-use-the-homebrew-zsh)
+      - [**Making MacOS use the Homebrew zsh**](#making-macos-use-the-homebrew-zsh)
   - [**Version control: git**](#version-control-git)
     - [**Installing git (with Homebrew)**](#installing-git-with-homebrew)
+    - [**Configuring git**](#configuring-git)
   - [**Framework to manage ZSH: OH-MY-ZSH**](#framework-to-manage-zsh-oh-my-zsh)
     - [**Installing OH-MY-ZSH**](#installing-oh-my-zsh)
     - [**Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)**](#enabling-autosuggestions-and-syntax-highlighting-on-zsh-through-oh-my-zsh)
   - [**Setting a theme for ZSH with OH-MY-ZSH: Powerlevel10k (P10k)**](#setting-a-theme-for-zsh-with-oh-my-zsh-powerlevel10k-p10k)
     - [**Installing the Nerd Fonts**](#installing-the-nerd-fonts)
     - [**Enhancing Powerlevel10k**](#enhancing-powerlevel10k)
+  - [**Virtual Environments Manager: miniconda**](#virtual-environments-manager-miniconda)
+    - [**Installing miniconda**](#installing-miniconda)
   - [**Python**](#python)
+    - [**Installing Python**](#installing-python)
+    - [**Getting the list of all existing environments**](#getting-the-list-of-all-existing-environments)
+    - [**Activating an environment**](#activating-an-environment)
+    - [**Listing packages installed inn an environment**](#listing-packages-installed-inn-an-environment)
+    - [**Deactivating an environment**](#deactivating-an-environment)
   - [**Text Editor: Visual Studio Code (VSCode)**](#text-editor-visual-studio-code-vscode)
     - [**Installing VSCode**](#installing-vscode)
     - [**Calling VSCode via the command line**](#calling-vscode-via-the-command-line)
@@ -32,6 +40,8 @@
     - [**Installing the Linters**](#installing-the-linters)
     - [**Using the Linters with VSCode**](#using-the-linters-with-vscode)
       - [**Enabling Linters on VSCode**](#enabling-linters-on-vscode)
+      - [**Adjusting the Linters verbosity in VSCode**](#adjusting-the-linters-verbosity-in-vscode)
+  - [**Controlling environments with VSCode**](#controlling-environments-with-vscode)
 
 I put a lot of value on the user experience associated with the tools I use for work. The time spent on a project should be as fun as it can be, and, for me, that involves leveraging powerful existing resources to make coding or simply dealing with the machine in more general terms more pleasing. In my case, a more pleasing experience comes with things that allow me to (for instance):
 
@@ -148,7 +158,7 @@ brew cask install zsh
 ls -la /usr/local/bin/zs*
 ```
 
-#### Making MacOS use the Homebrew zsh
+#### **Making MacOS use the Homebrew zsh**
 
 If you are using the most recent versions of MacOS, it is likely that you already have ZSH on your system, even before the installation. If you run *which zsh* before the installation by homebrew, the output will most likely be */bin/zsh*. That is the MacOS ZSH. If *zsh* is calling the Homebrew version, you should most likely see */usr/local/bin/zsh*.
 
@@ -183,6 +193,20 @@ brew install git
 - Restart the terminal
 
 To confirm that it worked, run *which git*. You should see */usr/local/bin/git*.
+
+### **Configuring git**
+
+To config your git username and email, run the following commands
+
+- ```bash
+  git config --global user.name [your name here]
+  ```
+
+- ```bash
+  git config --global user.email [your email address here]
+  ```
+
+To check that the changes took effect, inspect the file .gitconfig in your home directory.
 
 ## **Framework to manage ZSH: OH-MY-ZSH**
 
@@ -245,17 +269,85 @@ If you follow the Powerlevel10k configuration wizard, a nerd font should be inst
 
  The *~./p10k.zsh* file can be used to customized the prompts displayed on the left and on the right. Look up *POWERLEVEL9K_LEFT_PROMPT_ELEMENTS* and *POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS* and add or remove prompts as desired.
 
+## **Virtual Environments Manager: miniconda**
+
+To execute our projects, we will have to install Python and other packages. One problem that quickly arises is that different projects may ask for different versions of the same package. The way around that is to create environments for each project. With miniconda, we can do just that.
+
+Remark: there are few other tools to manage environments. For instance, we also have pyenv and virtualenv. Python3 also has a native module called [venv](https://docs.python.org/3/library/venv.html), whose purpose is to create virtual environments. We will stick to miniconda because it seems to be a popular option amongst data scientists. Miniconda can also be installed through Homebrew, but I am not completely sure whether the final result is equivalent.
+
+### **Installing miniconda**
+
+To install miniconda, access this [page](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html) and follow the instructions. (There are some special steps at the end because of zsh.)
+
 ## **Python**
 
-Python is a popular language for developing data science models. The Python version that comes with MacOS is quite obsolete, so we will install a newer one with Homebrew. To do so, run the folowing on your terminal:
+Python is a popular language for developing data science models. The Python version that comes with MacOS is quite obsolete, so we will install a newer one with Homebrew.
 
-```sh
-brew install python
+### **Installing Python**
+
+It is simple to install python using Homebrew with the command *brew install python*. However, we do not recommend this approach, as different projects may ask for different python versions. Instead, we will manage Python and its packages through miniconda, following this [guide](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
+
+This is done essentially through a .yml file, which will contain instructions regarding the python version and required packages for a given environment. Here is what a minimum environment file would look like:
+
+```yml
+name: ml
+channels:
+- defaults
+- conda-forge
+dependencies:
+- python=3.7
+- pip
+- pip:
 ```
 
-This should install python and pip, which is the package installer for python.
+To create the environment from that file -- say its name is environment.yaml -- , run: *conda env create -f environment.yaml*
+With this approach, an environment will be created at *~/miniconda/envs/ml*. It may be preferable to set the environment inside the project folder itself. To do so, change the command to *conda env create --prefix ./envs -f environment.yaml*.
 
-Due to the MacOS python taking precedence over the Homebrew python, it is necessary to call the Homebrew python and pip with *python3* and *pip3* (this might not be enough if MacOS eventually makes python 3.x the default python). One way around that is to define aliases. For now, I am just going to use the suffix 3 explicitly.
+Remark: it seems like, whenever *--prefix* is used, that actually takes precedence over the environment. Thus, we cannot refer to the environment through *--name* in commands, and must stick to *--prefix* while passing the full environment path.
+
+In this example, the steps above will create an environment with Python 3.7 in our project folder.
+
+(A very minimal way of creating an environment that could be used by multiple projects with a given python version is to run *conda create --name py35 python=3.5*.)
+
+### **Getting the list of all existing environments**
+
+- To display all existing environments, run the command:
+
+```sh
+  conda env list
+```
+
+### **Activating an environment**
+
+- To activate an environment inside, say, *./envs*, run:
+
+```sh
+  conda activate ./envs
+```
+
+You can double check that the environment was activated by running conda env list and checking which environment is singled out with a star (\*) symbol. If you installed Python with the environment file, you can also run *which python* to check that the environment path appears in the output.
+
+### **Listing packages installed inn an environment**
+
+- With an environment activated, run:
+
+```sh
+  conda list
+```
+
+- If the environment is not activated, you can still run
+
+```sh
+  conda list --prefix <path_to_environment>
+```
+
+### **Deactivating an environment**
+
+- To revert to the base environment, run:
+
+```sh
+  conda deactivate
+```
 
 ## **Text Editor: Visual Studio Code (VSCode)**
 
@@ -336,4 +428,9 @@ Remark: if you do the above while having a folder/project already open in VSCode
 
 - if you want to have multiple linters active, use the settings JSON (either global or local) directly; for example, to have pylint, flake8 and pydocstyle enabled, have the parameters *python.linting.pylintEnabled*, *python.linting.flake8Enabled* and *python.linting.pydocstyle* all set to true.
 
-Moreover, you can control how verbose these linters should be as well. Pylint, flake8 and pydocstyle use the following parameters on the settings JSON: *python.linting.pylintArgs*, *python.linting.flake8Args* and *python.pydocstyleArgs*", respectively. I usually set *python.linting.pylintArgs": ["--enable=F,E,W,C,R"]*, where the letters correspond to different kinds of messages pylint may display (F: fatal; E: error; W: warning; C: convention; R: refactoring). For flake8, the options are F, E and W. For pycodestyle, the options are E and W.
+#### **Adjusting the Linters verbosity in VSCode**
+
+The verbosity of the linters Pylint, flake8 and pydocstyle use the following parameters on the settings JSON: *python.linting.pylintArgs*, *python.linting.flake8Args* and *python.pydocstyleArgs*", respectively (more info for additional linters can be found on the VSCode page). I usually set *python.linting.pylintArgs": ["--enable=F,E,W,C,R"]*, where the letters correspond to different kinds of messages pylint may display (F: fatal; E: error; W: warning; C: convention; R: refactoring). For flake8, the options are F, E and W. For pycodestyle, the options are E and W.
+
+## **Controlling environments with VSCode**
+

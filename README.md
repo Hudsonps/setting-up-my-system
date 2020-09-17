@@ -147,11 +147,10 @@ In Unix, the shell is the command interpretor. A more powerful shell should make
 - On your terminal, simply run:
 
 ```bash
-brew cask install zsh
+brew install zsh
 ```
 
-Confirm that it was installed by running: `bash
-ls -la /usr/local/bin/zs*`.
+Confirm that it was installed by running: `ls -la /usr/local/bin/zs*`.
 
 #### **Making MacOS use the Homebrew zsh**
 

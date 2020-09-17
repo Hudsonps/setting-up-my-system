@@ -295,13 +295,13 @@ dependencies:
 ```
 
 To create the environment from that file -- say its name is `environment.yaml` -- , run: `conda env create -f environment.yaml`
-With this approach, an environment will be created at `~/miniconda/envs/ml`. It may be preferable to set the environment inside the project folder itself. To do so, change the command to `conda env create --prefix ./envs -f environment.yaml`.
+With this approach, an environment will be created at `~/miniconda/envs/ml`. It may be preferable to set the environment inside the project folder itself. To do so, change the command to `conda env create --prefix ./env -f environment.yaml`.
 
 Remark: it seems like, whenever `--prefix` is used, that actually takes precedence over the environment. Thus, we cannot refer to the environment through `--name` in commands, and must stick to `--prefix` while passing the full environment path.
 
 In this example, the steps above will create an environment with Python 3.7 in our project folder.
 
-(A very minimal way of creating an environment that could be used by multiple projects with a given python version is to run `conda create --name py35 python=3.5`.)
+(A very minimal way of creating an environment that could be used by multiple projects with a given python version is to run `conda create --name py35 python=3.5`. The conda base environment should also come with python and pip, which is a python package manager)
 
 ### **Getting the list of all existing environments**
 
@@ -377,10 +377,8 @@ We can rely on extensions to improve the looks of VSCode. Here are some extensio
 
 - Material Icon Theme
 - Ayu
--Material Theme
 
 The icon theme can be changed through by command palette by looking up "File Icon Theme").
-I personally do not use the Material theme directly but, through it, it is possible to choose an accent color.
 
 ### **Useful Extensions**
 
@@ -388,7 +386,7 @@ Here is a list of useful extensions and what to expect from them:
 
 |Extension|Description|
 |---|---|
-|Markdownlint|Linter for Markdown, to ensure some format standards (I used it to write this file!)|
+|markdownlint|Linter for Markdown, to ensure some format standards (I used it to write this file!)|
 |Python|VSCode extension to support coding in Python|
 |Visual Studio IntelliCode|AI-driven Intellisense for VSCode}|
 |Trailing Spaces| Highlights trailing space for easy removal|
@@ -410,11 +408,27 @@ In Python, there are several linters. This [page](https://github.com/vintasoftwa
 
 ### **Installing the Linters**
 
-- To install these extensions, run `pip3 install <linter_name>`.
+Since these linters are essentially python packages, they would be environment-dependent. We are going to install them at the conda base environment and discuss in the next sections how to configure VSCode to access these linters even when we change environments.
+
+To install the linters on the base environment:
+
+- Make sure the base environment is active by running `coda deactivate` and `coda activate base`
+
+- Confirm that the commands `which python` and `which pip` output paths associated with conda
+
+- To install flake8, run `conda install -c conda-forge flake8`
+
+- To install pylint, run `conda install -c conda-forge pylint`
+
+- To install pydocstyle, run `conda install -c conda-forge pydocstyle`
+
+- To confirm that the packages have been installed, run `python` on your terminal and `import <linter_name>` to check that the packages are now available
+
+- You should also be able to see the packages at `~/miniconda/bin` (assuming you installed conda at the default location)
 
 ### **Using the Linters with VSCode**
 
-Though linters can be run directly (for example, to examine a file called `mycode.py` with Flake8, run `flake8 mycode.py`), I find them more useful when their functionality is coupled with a texteditor that leverages their diagnosis and displays it on the code itself. To take advantage of that we must enable linters on VSCode.
+Though linters can be run directly (for example, to examine a file called `mycode.py` with Flake8, run `flake8 mycode.py`), I find them more useful when their functionality is coupled with a text editor that leverages their diagnosis and displays it on the code itself. To take advantage of that, we must enable linters on VSCode. Moreover, we will make access to the linters agnostic of a given environment, as each project should have their own environment.
 
 #### **Enabling Linters on VSCode**
 
@@ -426,8 +440,35 @@ Remark: if you do the above while having a folder/project already open in VSCode
 
 - if you want to have multiple linters active, use the settings JSON (either global or local) directly; for example, to have pylint, flake8 and pydocstyle enabled, have the parameters *python.linting.pylintEnabled*, *python.linting.flake8Enabled* and *python.linting.pydocstyle* all set to true.
 
+- To use the linters we installed on the base environment of conda, include the following on your configuration JSON:
+
+```json
+    "python.linting.pylintPath": "~/miniconda3/bin/pylint",
+    "python.linting.flake8Path": "~/miniconda3/bin/flake8",
+    "python.linting.pydocstylePath": "~/miniconda3/bin/pydocstyle"
+```
+
+(In the above I assumed that miniconda was installed at the default location. Adjust accordingly.)
+
+With the last step, the linters should work even when you switch environments.
+
 #### **Adjusting the Linters verbosity in VSCode**
 
 The verbosity of the linters Pylint, flake8 and pydocstyle use the following parameters on the settings JSON: *python.linting.pylintArgs*, *python.linting.flake8Args* and *python.pydocstyleArgs*", respectively (more info for additional linters can be found on the VSCode page). I usually set *python.linting.pylintArgs": ["--enable=F,E,W,C,R"]*, where the letters correspond to different kinds of messages pylint may display (F: fatal; E: error; W: warning; C: convention; R: refactoring). For flake8, the options are F, E and W. For pycodestyle, the options are E and W.
+
+Here is a summary of what I currently have on my global config JSON in terms of linters:
+
+```json
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.pydocstyleEnabled": true,
+    "python.linting.pylintPath": "~/miniconda3/bin/pylint",
+    "python.linting.flake8Path": "~/miniconda3/bin/flake8",
+    "python.linting.pydocstylePath": "~/miniconda3/bin/pydocstyle",
+    "python.linting.pylintArgs": ["--enable=F,E,W,C,R"],
+    "python.linting.flake8Args": ["--enable=F,E,W"],
+    "python.linting.pydocstyleArgs": ["--enable=E,W"]
+  ```
 
 ## **Controlling environments with VSCode**

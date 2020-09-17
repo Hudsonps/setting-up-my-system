@@ -170,6 +170,8 @@ sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 
 (Another approach that would have achieved the same effect would be to edit `/etc/shells` first to add `/usr/local/bin/zsh`, and then running `chsh -s /usr/local/bin/zsh`. The command chsh is used for **ch**anging **sh**ells.)
 
+- Restart your terminal
+
 In the end, make sure that the commands `which zsh` and `echo $SHELL` output the Homebrew zsh path, and that this path is `/etc/shells`.
 
 ## **Version control: git**
@@ -221,8 +223,8 @@ You should now have a folder with the path `$HOME/.oh-my-zsh`, and also a zsh co
 - Run the following lines to add the zsh-autosuggestions and zsh-syntax-highlighting packages to the set of plugins by oh-my-zsh:
 
 ```bash
-    sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestion
-    sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
 - Add the plugins to the `.zshrc` file:
@@ -237,9 +239,9 @@ You should now have a folder with the path `$HOME/.oh-my-zsh`, and also a zsh co
 
 One of the things zsh supports is themes. Themes interact with our terminal, and will help make it more appealing, and also display *useful* information organically (here are a few possibilities: how much memory/CPU is being used; the current git branch in a local directory; whether files tracked by git have been changed).
 
-My favourite theme is [Powerlevel10k](https://github.com/romkatv/powerlevel10k). It is actually possible to install it without OH-MY-ZSH (and in fact that is [how](https://github.com/romkatv/powerlevel10k#manual) I did it, at first). However, since oh-my-zsh is supposed to manage our configurations, we will take the path of using oh-my-zsh.
+My favourite theme is [Powerlevel10k](https://github.com/romkatv/powerlevel10k). It is actually possible to install it without OH-MY-ZSH (and in fact that is [how](https://github.com/romkatv/powerlevel10k#manual) I did it, at first). However, since oh-my-zsh is supposed to manage our configurations, we will take the approach of using oh-my-zsh.
 
-- Start with the command below (which the P10K files to the oh-my-zsh custom themes folder):
+- Start with the command below (which adds the P10K files to the oh-my-zsh custom themes folder):
 
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -364,10 +366,10 @@ VSCode has an integrated terminal. To bring it up, press *Control + `. To integr
 
   ```json
       "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
-      "terminal.integrated.fontFamily": "Hack Nerd Font"
+      "terminal.integrated.fontFamily": "MesloLGS NF"
   ```
 
-The first line contains the path to the zsh installed by Homebrew; the second line is the font type, which you can choose at your convenience.
+The first line contains the path to the zsh installed by Homebrew; the second line is the font type, which you can choose at your convenience (make sure it exists in your systems and that it supports the glyphs associated with P10k if you are using that theme).
 
 ### **Beautifying VSCode**
 
@@ -375,6 +377,10 @@ We can rely on extensions to improve the looks of VSCode. Here are some extensio
 
 - Material Icon Theme
 - Ayu
+-Material Theme
+
+The icon theme can be changed through by command palette by looking up "File Icon Theme").
+I personally do not use the Material theme directly but, through it, it is possible to choose an accent color.
 
 ### **Useful Extensions**
 

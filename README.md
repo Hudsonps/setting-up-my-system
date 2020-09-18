@@ -75,7 +75,6 @@ If you are on a Mac, certain things will not work before you install the *xcode 
 To confirm that it worked, enter this on your terminal:
 `xcode-select -p`
 
-
 You should see something like `/Library/Developer/CommandLineTools`.
 
 ## **Keyboard**
@@ -294,8 +293,14 @@ dependencies:
 - python=3.7
 ```
 
+### **Creating an environment from an environment file**
+
 To create the environment from that file -- say its name is `environment.yaml` -- , run: `conda env create -f environment.yaml`
-With this approach, an environment will be created at `~/miniconda/envs/ml`. It may be preferable to set the environment inside the project folder itself. To do so, change the command to `conda env create --prefix ./env -f environment.yaml`.
+With this approach, an environment will be created at `~/miniconda/envs/ml`. It may be preferable to set the environment inside the project folder itself. To do so, change the command to
+
+```sh
+conda env create --prefix ./env -f environment.yaml
+```
 
 Remark: it seems like, whenever `--prefix` is used, that actually takes precedence over the environment. Thus, we cannot refer to the environment through `--name` in commands, and must stick to `--prefix` while passing the full environment path.
 
@@ -313,10 +318,10 @@ In this example, the steps above will create an environment with Python 3.7 in o
 
 ### **Activating an environment**
 
-- To activate an environment inside, say, *./envs*, run:
+- To activate an environment inside, say, *./env*, run:
 
 ```sh
-  conda activate ./envs
+  conda activate ./env
 ```
 
 You can double check that the environment was activated by running conda env list and checking which environment is singled out with a star (\*) symbol. If you installed Python with the environment file, you can also run `which python` to check that the environment path appears in the output.
@@ -342,6 +347,8 @@ You can double check that the environment was activated by running conda env lis
 ```sh
   conda deactivate
 ```
+
+### Deleting an environment**
 
 ## **Text Editor: Visual Studio Code (VSCode)**
 
@@ -400,6 +407,12 @@ In the following links, you can find a few more sources:
 <https://medium.com/issuehunt/10-visual-studio-code-extensions-for-python-development-de0be51bbeed>
 <https://www.shopify.ca/partners/blog/best-visual-studio-code-extensions>
 
+## **Controlling environments with VSCode**
+
+Just to recapitulate, you can set an environment folder named `env` inside your project folder by running `conda env create --prefix ./env -f environment.yaml`, where `environment.yaml` is the file with the required packages. (If something goes wrong, you can remove the environment by running `conda remove --prefix ./env --all`).
+
+If the environment is already in place, you can select it in VSCode by calling the command palette and looking for *"Python: Select Interpreter"*. Then, assuming your environment is the *env* folder inside your project, find the path `./env/bin/pythonx.x`, where the python version will depend on what you have specified on the environment file (do not forget to include python!). You can further confirm that this has worked by examining the local settings JSON for the variable *python.linting.pythonPath*, which should specify the python of that particular environment.
+
 ## **Python Linters**
 
 A linter is a tool that analyzes code and flag errors and violations of certain stylistic conventions. They are helpful in spotting bugs and errors earlier on, and in ensuring that the code conforms to some standards, which may make it easier to read and follow by peers.
@@ -408,13 +421,15 @@ In Python, there are several linters. This [page](https://github.com/vintasoftwa
 
 ### **Installing the Linters**
 
-Since these linters are essentially python packages, they would be environment-dependent. We are going to install them at the conda base environment and discuss in the next sections how to configure VSCode to access these linters even when we change environments.
+Since these linters are essentially python packages, they would be environment-dependent. We are going to install them at the conda base environment and discuss in the next sections how to configure VSCode to access these linters.
 
-To install the linters on the base environment:
+Disclaimer: I tried making the linters environment-agnostic, i.e., making environments use global linters, but it seems like VSCode does not support that (for example, it causes pylint to fail when checking for whether packages are present when being imported).
 
-- Make sure the base environment is active by running `coda deactivate` and `coda activate base`
+To install the linters on a given environment:
 
-- Confirm that the commands `which python` and `which pip` output paths associated with conda
+- Make sure that that environment is active by running `coda deactivate` and `coda activate <environment_path_or_name>`
+
+- Confirm that the commands `which python` and `which pip` output paths are associated with that environment
 
 - To install flake8, run `conda install -c conda-forge flake8`
 
@@ -422,13 +437,11 @@ To install the linters on the base environment:
 
 - To install pydocstyle, run `conda install -c conda-forge pydocstyle`
 
-- To confirm that the packages have been installed, run `python` on your terminal and `import <linter_name>` to check that the packages are now available
-
-- You should also be able to see the packages at `~/miniconda/bin` (assuming you installed conda at the default location)
+To confirm that the packages have been installed, run `python` on your terminal and `import <linter_name>` to check that the packages are now available. You should also be able to see the packages at a folder named `bin` inside your environment folder
 
 ### **Using the Linters with VSCode**
 
-Though linters can be run directly (for example, to examine a file called `mycode.py` with Flake8, run `flake8 mycode.py`), I find them more useful when their functionality is coupled with a text editor that leverages their diagnosis and displays it on the code itself. To take advantage of that, we must enable linters on VSCode. Moreover, we will make access to the linters agnostic of a given environment, as each project should have their own environment.
+Though linters can be run directly (for example, to examine a file called `mycode.py` with Flake8, run `flake8 mycode.py`), I find them more useful when their functionality is coupled with a text editor that leverages their diagnosis and displays it on the code itself. To take advantage of that, we must enable linters on VSCode.
 
 #### **Enabling Linters on VSCode**
 
@@ -440,17 +453,7 @@ Remark: if you do the above while having a folder/project already open in VSCode
 
 - if you want to have multiple linters active, use the settings JSON (either global or local) directly; for example, to have pylint, flake8 and pydocstyle enabled, have the parameters *python.linting.pylintEnabled*, *python.linting.flake8Enabled* and *python.linting.pydocstyle* all set to true.
 
-- To use the linters we installed on the base environment of conda, include the following on your configuration JSON:
-
-```json
-    "python.linting.pylintPath": "~/miniconda3/bin/pylint",
-    "python.linting.flake8Path": "~/miniconda3/bin/flake8",
-    "python.linting.pydocstylePath": "~/miniconda3/bin/pydocstyle"
-```
-
-(In the above I assumed that miniconda was installed at the default location. Adjust accordingly.)
-
-With the last step, the linters should work even when you switch environments.
+- Install pylint, flake8 and pydocstyle (see the previous section) in the environment associated with the chosen Python interpreter
 
 #### **Adjusting the Linters verbosity in VSCode**
 
@@ -463,12 +466,7 @@ Here is a summary of what I currently have on my global config JSON in terms of 
     "python.linting.pylintEnabled": true,
     "python.linting.flake8Enabled": true,
     "python.linting.pydocstyleEnabled": true,
-    "python.linting.pylintPath": "~/miniconda3/bin/pylint",
-    "python.linting.flake8Path": "~/miniconda3/bin/flake8",
-    "python.linting.pydocstylePath": "~/miniconda3/bin/pydocstyle",
     "python.linting.pylintArgs": ["--enable=F,E,W,C,R"],
     "python.linting.flake8Args": ["--enable=F,E,W"],
     "python.linting.pydocstyleArgs": ["--enable=E,W"]
   ```
-
-## **Controlling environments with VSCode**

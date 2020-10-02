@@ -31,8 +31,8 @@
   - [11.3. **Getting the list of all existing environments**](#113-getting-the-list-of-all-existing-environments)
   - [11.4. **Activating an environment**](#114-activating-an-environment)
   - [11.5. **Listing packages installed in an environment**](#115-listing-packages-installed-in-an-environment)
-  - [11.6. **Deactivating an environment**](#116-deactivating-an-environment)
-  - [11.7. Deleting an environment**](#117-deleting-an-environment)
+  - [11.6. Deactivating an environment](#116-deactivating-an-environment)
+  - [11.7. Deleting an environment](#117-deleting-an-environment)
 - [12. **Text Editor: Visual Studio Code (VSCode)**](#12-text-editor-visual-studio-code-vscode)
   - [12.1. **Installing VSCode**](#121-installing-vscode)
   - [12.2. **Calling VSCode via the command line**](#122-calling-vscode-via-the-command-line)
@@ -343,7 +343,7 @@ You can double check that the environment was activated by running conda env lis
   conda list --prefix <path_to_environment>
 ```
 
-## 11.6. **Deactivating an environment**
+## 11.6. Deactivating an environment
 
 - To revert to the base environment, run:
 
@@ -351,7 +351,13 @@ You can double check that the environment was activated by running conda env lis
   conda deactivate
 ```
 
-## 11.7. Deleting an environment**
+## 11.7. Deleting an environment
+
+- To completely remove an environment, run:
+
+```sh
+conda remove --prefix <environment_path> --all
+```
 
 # 12. **Text Editor: Visual Studio Code (VSCode)**
 

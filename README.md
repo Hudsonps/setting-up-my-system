@@ -1,47 +1,49 @@
-# **Setting up my work platform**
+# 1. **Setting up my work platform**
 
-- [**Setting up my work platform**](#setting-up-my-work-platform)
-  - [**Xcode CommandLine Tools**](#xcode-commandline-tools)
-  - [**Keyboard**](#keyboard)
-    - [**Increasing the key repeat speed**](#increasing-the-key-repeat-speed)
-  - [**Package Manager: Homebrew**](#package-manager-homebrew)
-  - [**Terminal: iTerm2**](#terminal-iterm2)
-    - [**Installing iTerm2**](#installing-iterm2)
-    - [**Setting up a color theme for iTerm2**](#setting-up-a-color-theme-for-iterm2)
-      - [My Personal Color Theme Recommendations](#my-personal-color-theme-recommendations)
-      - [Optional: Bulk-removing color themes from iTerm2](#optional-bulk-removing-color-themes-from-iterm2)
-  - [**Shell: ZSH**](#shell-zsh)
-    - [**Installing ZSH**](#installing-zsh)
-      - [**Making MacOS use the Homebrew zsh**](#making-macos-use-the-homebrew-zsh)
-  - [**Version control: git**](#version-control-git)
-    - [**Installing git (with Homebrew)**](#installing-git-with-homebrew)
-    - [**Configuring git**](#configuring-git)
-  - [**Framework to manage ZSH: OH-MY-ZSH**](#framework-to-manage-zsh-oh-my-zsh)
-    - [**Installing OH-MY-ZSH**](#installing-oh-my-zsh)
-    - [**Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)**](#enabling-autosuggestions-and-syntax-highlighting-on-zsh-through-oh-my-zsh)
-  - [**Setting a theme for ZSH with OH-MY-ZSH: Powerlevel10k (P10k)**](#setting-a-theme-for-zsh-with-oh-my-zsh-powerlevel10k-p10k)
-    - [**Installing the Nerd Fonts**](#installing-the-nerd-fonts)
-    - [**Enhancing Powerlevel10k**](#enhancing-powerlevel10k)
-  - [**Virtual Environments Manager: miniconda**](#virtual-environments-manager-miniconda)
-    - [**Installing miniconda**](#installing-miniconda)
-  - [**Python**](#python)
-    - [**Installing Python**](#installing-python)
-    - [**Getting the list of all existing environments**](#getting-the-list-of-all-existing-environments)
-    - [**Activating an environment**](#activating-an-environment)
-    - [**Listing packages installed in an environment**](#listing-packages-installed-in-an-environment)
-    - [**Deactivating an environment**](#deactivating-an-environment)
-  - [**Text Editor: Visual Studio Code (VSCode)**](#text-editor-visual-studio-code-vscode)
-    - [**Installing VSCode**](#installing-vscode)
-    - [**Calling VSCode via the command line**](#calling-vscode-via-the-command-line)
-    - [**Integrating the VSCode terminal with ZSH**](#integrating-the-vscode-terminal-with-zsh)
-    - [**Beautifying VSCode**](#beautifying-vscode)
-    - [**Useful Extensions**](#useful-extensions)
-  - [**Python Linters**](#python-linters)
-    - [**Installing the Linters**](#installing-the-linters)
-    - [**Using the Linters with VSCode**](#using-the-linters-with-vscode)
-      - [**Enabling Linters on VSCode**](#enabling-linters-on-vscode)
-      - [**Adjusting the Linters verbosity in VSCode**](#adjusting-the-linters-verbosity-in-vscode)
-  - [**Controlling environments with VSCode**](#controlling-environments-with-vscode)
+- [1. **Setting up my work platform**](#1-setting-up-my-work-platform)
+  - [1.1. **Xcode CommandLine Tools**](#11-xcode-commandline-tools)
+  - [1.2. **Keyboard**](#12-keyboard)
+    - [1.2.1. **Increasing the key repeat speed**](#121-increasing-the-key-repeat-speed)
+  - [1.3. **Package Manager: Homebrew**](#13-package-manager-homebrew)
+  - [1.4. **Terminal: iTerm2**](#14-terminal-iterm2)
+    - [1.4.1. **Installing iTerm2**](#141-installing-iterm2)
+    - [1.4.2. **Setting up a color theme for iTerm2**](#142-setting-up-a-color-theme-for-iterm2)
+      - [1.4.2.1. My Personal Color Theme Recommendations](#1421-my-personal-color-theme-recommendations)
+      - [1.4.2.2. Optional: Bulk-removing color themes from iTerm2](#1422-optional-bulk-removing-color-themes-from-iterm2)
+  - [1.5. **Shell: ZSH**](#15-shell-zsh)
+    - [1.5.1. **Installing ZSH**](#151-installing-zsh)
+      - [1.5.1.1. **Making MacOS use the Homebrew zsh**](#1511-making-macos-use-the-homebrew-zsh)
+  - [1.6. **Version control: git**](#16-version-control-git)
+    - [1.6.1. **Installing git (with Homebrew)**](#161-installing-git-with-homebrew)
+    - [1.6.2. **Configuring git**](#162-configuring-git)
+  - [1.7. **Framework to manage ZSH: OH-MY-ZSH**](#17-framework-to-manage-zsh-oh-my-zsh)
+    - [1.7.1. **Installing OH-MY-ZSH**](#171-installing-oh-my-zsh)
+    - [1.7.2. **Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)**](#172-enabling-autosuggestions-and-syntax-highlighting-on-zsh-through-oh-my-zsh)
+  - [1.8. **Setting a theme for ZSH with OH-MY-ZSH: Powerlevel10k (P10k)**](#18-setting-a-theme-for-zsh-with-oh-my-zsh-powerlevel10k-p10k)
+    - [1.8.1. **Installing the Nerd Fonts**](#181-installing-the-nerd-fonts)
+    - [1.8.2. **Enhancing Powerlevel10k**](#182-enhancing-powerlevel10k)
+  - [1.9. **Virtual Environments Manager: miniconda**](#19-virtual-environments-manager-miniconda)
+    - [1.9.1. **Installing miniconda**](#191-installing-miniconda)
+  - [1.10. **Python**](#110-python)
+    - [1.10.1. **Installing Python**](#1101-installing-python)
+    - [1.10.2. **Creating an environment from an environment file**](#1102-creating-an-environment-from-an-environment-file)
+    - [1.10.3. **Getting the list of all existing environments**](#1103-getting-the-list-of-all-existing-environments)
+    - [1.10.4. **Activating an environment**](#1104-activating-an-environment)
+    - [1.10.5. **Listing packages installed in an environment**](#1105-listing-packages-installed-in-an-environment)
+    - [1.10.6. **Deactivating an environment**](#1106-deactivating-an-environment)
+    - [1.10.7. Deleting an environment**](#1107-deleting-an-environment)
+  - [1.11. **Text Editor: Visual Studio Code (VSCode)**](#111-text-editor-visual-studio-code-vscode)
+    - [1.11.1. **Installing VSCode**](#1111-installing-vscode)
+    - [1.11.2. **Calling VSCode via the command line**](#1112-calling-vscode-via-the-command-line)
+    - [1.11.3. **Integrating the VSCode terminal with ZSH**](#1113-integrating-the-vscode-terminal-with-zsh)
+    - [1.11.4. **Beautifying VSCode**](#1114-beautifying-vscode)
+    - [1.11.5. **Useful Extensions**](#1115-useful-extensions)
+  - [1.12. **Controlling environments with VSCode**](#112-controlling-environments-with-vscode)
+  - [1.13. **Python Linters**](#113-python-linters)
+    - [1.13.1. **Installing the Linters**](#1131-installing-the-linters)
+    - [1.13.2. **Using the Linters with VSCode**](#1132-using-the-linters-with-vscode)
+      - [1.13.2.1. **Enabling Linters on VSCode**](#11321-enabling-linters-on-vscode)
+      - [1.13.2.2. **Adjusting the Linters verbosity in VSCode**](#11322-adjusting-the-linters-verbosity-in-vscode)
 
 I put a lot of value on the user experience associated with the tools I use for work. The time spent on a project should be as fun as it can be, and, for me, that involves leveraging powerful existing resources to make coding or simply dealing with the machine in more general terms more pleasing. In my case, a more pleasing experience comes with things that allow me to (for instance):
 
@@ -61,7 +63,7 @@ In my data science projects, I spend a lot of time with the following tools:
 
 In what follows, I outline how I like to setup these tools. I came to learn these setups through multiple blogs, and I hope to consolidate my own personal steps on this README.md file.I have tried my best to include some links to original sources whenever I can remember them. As a final introductory remark, these setups are not set in stone, I will be updating this file whenever new preferred steps are included or removed.
 
-## **Xcode CommandLine Tools**
+## 1.1. **Xcode CommandLine Tools**
 
 If you are on a Mac, certain things will not work before you install the *xcode commandline tools*. To install them:
 
@@ -77,18 +79,18 @@ To confirm that it worked, enter this on your terminal:
 
 You should see something like `/Library/Developer/CommandLineTools`.
 
-## **Keyboard**
+## 1.2. **Keyboard**
 
 We will be typing a lot, so we want to make the keyboard experience more pleasant.
 
-### **Increasing the key repeat speed**
+### 1.2.1. **Increasing the key repeat speed**
 
 We will be pressing some keys often -- for instance, *delete* to erase parts of lines we type on the terminal. To make this process faster, click on the  icon on the top left, then:
 
 -  ⟶ System Preferences ⟶ Keyboard ⟶ Keyboard
 - Set *Key Repeat* to *Fast* and *Delay Until Repeat* to *Short*
 
-## **Package Manager: Homebrew**
+## 1.3. **Package Manager: Homebrew**
 
 [Homebrew](https://brew.sh) is a package manager that will make our lives easier when it comes to... managing packages. Run this on the terminal to install it.
 
@@ -98,11 +100,11 @@ We will be pressing some keys often -- for instance, *delete* to erase parts of 
 
 Hint: this [link](https://osxdaily.com/2018/07/05/where-homebrew-packages-installed-location-mac/) has more details on how to find the Homebrew packages installed on Mac.
 
-## **Terminal: iTerm2**
+## 1.4. **Terminal: iTerm2**
 
 The standard terminal was useful so far, but in my opinion it feels pretty flat. I do not find much fun in spending time with it. Thanks to a co-worker, I came across [iTerm2](https://iterm2.com), which I believe is available on MacOS, but not on Windows, unfortunately. (It would be nice to know of an equally good alternative for Windows, as some of my work has to be done on that platform).
 
-### **Installing iTerm2**
+### 1.4.1. **Installing iTerm2**
 
 - Run the following on your terminal:
 
@@ -110,7 +112,7 @@ The standard terminal was useful so far, but in my opinion it feels pretty flat.
     brew cask install iterm2
 ```
 
-### **Setting up a color theme for iTerm2**
+### 1.4.2. **Setting up a color theme for iTerm2**
 
 To make iTerm2 look more appealing, I like to have some color theme options. You can find a few [here](https://iterm2colorschemes.com).
 
@@ -123,11 +125,11 @@ The themes are encoded in *.itermcolor* files. To import a custom theme to iTerm
 
 Hint: you can import multiple themes at once by having them on the same folder and pressing Shift + ↓ or Shift + ↑ after selecting a file. I do not suggest importing too many themes at once because iTerm2 does not have an official way to delete multiple themes at once.
 
-#### My Personal Color Theme Recommendations
+#### 1.4.2.1. My Personal Color Theme Recommendations
 
 - [Ayu](https://github.com/hwyncho/ayu-iTerm)
 
-#### Optional: Bulk-removing color themes from iTerm2
+#### 1.4.2.2. Optional: Bulk-removing color themes from iTerm2
 
 [Here](https://gist.github.com/kecebongsoft/11312110) is a way to get rid of too many color terms for iTerm2 at once. However, I found it easier to follow the instructions [here](https://iterm2.com/faq.html) and restore iTerm2 to its default settings by running:
 
@@ -137,11 +139,11 @@ defaults delete com.googlecode.iterm2
 
 (I am not entirely sure whether this must be done while at *~/Library/Preferences/*, but you can double-check.)
 
-## **Shell: ZSH**
+## 1.5. **Shell: ZSH**
 
 In Unix, the shell is the command interpretor. A more powerful shell should make our experience with the terminal more pleasant. Though *Bash* seems to be the standard shell for many systems, I have been introduced to an alternative shell, *Z shell* (or *ZSH* for short) years ago. It is supposed to have extended capabilities over Bash, but I am not knowledgeable enough to defend the claim. That said, ZSH has worked fairly well for me, so I am going to cover it here.
 
-### **Installing ZSH**
+### 1.5.1. **Installing ZSH**
 
 - On your terminal, simply run:
 
@@ -151,7 +153,7 @@ brew install zsh
 
 Confirm that it was installed by running: `ls -la /usr/local/bin/zs*`.
 
-#### **Making MacOS use the Homebrew zsh**
+#### 1.5.1.1. **Making MacOS use the Homebrew zsh**
 
 If you are using the most recent versions of MacOS, it is likely that you already have ZSH on your system, even before the installation. If you run `which zsh` before the installation by homebrew, the output will most likely be `/bin/zsh`. That is the MacOS ZSH. If `zsh` is calling the Homebrew version, you should most likely see `/usr/local/bin/zsh`.
 
@@ -173,11 +175,11 @@ sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 
 In the end, make sure that the commands `which zsh` and `echo $SHELL` output the Homebrew zsh path, and that this path is `/etc/shells`.
 
-## **Version control: git**
+## 1.6. **Version control: git**
 
 Though MacOS comes with a git, I am going to use the version provided by brew.
 
-### **Installing git (with Homebrew)**
+### 1.6.1. **Installing git (with Homebrew)**
 
 - Run the command
 
@@ -189,7 +191,7 @@ brew install git
 
 To confirm that it worked, run `which git`. You should see `/usr/local/bin/git`.
 
-### **Configuring git**
+### 1.6.2. **Configuring git**
 
 To config your git username and email, run the following commands
 
@@ -203,11 +205,11 @@ To config your git username and email, run the following commands
 
 To check that the changes took effect, inspect the file `.gitconfig` in your home directory.
 
-## **Framework to manage ZSH: OH-MY-ZSH**
+## 1.7. **Framework to manage ZSH: OH-MY-ZSH**
 
 To further leverage the capabilities of zsh, we now install ['Oh-My-Zsh'](https://github.com/ohmyzsh/ohmyzsh), a community-driven framework for managing our zsh configuration.
 
-### **Installing OH-MY-ZSH**
+### 1.7.1. **Installing OH-MY-ZSH**
 
 - Run the following command on the terminal:
 
@@ -217,7 +219,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 You should now have a folder with the path `$HOME/.oh-my-zsh`, and also a zsh configuration file, `$HOME/.zshrc` . This file should have a line that sets an environmental variable: `export ZSH="/Users/hudson/.oh-my-zsh"` The variable $ZSH$ is (presumably) the bridge between zsh and oh-my-zsh.
 
-### **Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)**
+### 1.7.2. **Enabling autosuggestions and syntax highlighting on ZSH (through OH-MY-ZSH)**
 
 - Run the following lines to add the zsh-autosuggestions and zsh-syntax-highlighting packages to the set of plugins by oh-my-zsh:
 
@@ -234,7 +236,7 @@ You should now have a folder with the path `$HOME/.oh-my-zsh`, and also a zsh co
       ...
   )
 
-## **Setting a theme for ZSH with OH-MY-ZSH: Powerlevel10k (P10k)**
+## 1.8. **Setting a theme for ZSH with OH-MY-ZSH: Powerlevel10k (P10k)**
 
 One of the things zsh supports is themes. Themes interact with our terminal, and will help make it more appealing, and also display *useful* information organically (here are a few possibilities: how much memory/CPU is being used; the current git branch in a local directory; whether files tracked by git have been changed).
 
@@ -256,29 +258,29 @@ After running the configuration wizard, you should now have the file `~/.p10k.zs
 
 Hint: you can trigger the configuration wizard with the command `p10k configure`. I believe that running this overwrites the config file `~/.p10k.zsh`, so make a copy of it if you customized it extensively (the wizard may do that already, but I do not remember for sure.)
 
-### **Installing the Nerd Fonts**
+### 1.8.1. **Installing the Nerd Fonts**
 
 If you follow the Powerlevel10k configuration wizard, a nerd font should be installed during the process. You can find more fonts [here](https://github.com/ryanoasis/nerd-fonts). The nerd fonts are fonts patched with a high number of glyphs, which are used by Powerlevel10k to enhance the terminal looks. The font can be changed in the settings for iTerm2.
 
-### **Enhancing Powerlevel10k**
+### 1.8.2. **Enhancing Powerlevel10k**
 
  The `~./p10k.zsh` file can be used to customized the prompts displayed on the left and on the right. Look up *POWERLEVEL9K_LEFT_PROMPT_ELEMENTS* and *POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS* and add or remove prompts as desired.
 
-## **Virtual Environments Manager: miniconda**
+## 1.9. **Virtual Environments Manager: miniconda**
 
 To execute our projects, we will have to install Python and other packages. One problem that quickly arises is that different projects may ask for different versions of the same package. The way around that is to create environments for each project. With miniconda, we can do just that.
 
 Remark: there are few other tools to manage environments. For instance, we also have pyenv and virtualenv. Python3 also has a native module called [venv](https://docs.python.org/3/library/venv.html), whose purpose is to create virtual environments. We will stick to miniconda because it seems to be a popular option amongst data scientists. Miniconda can also be installed through Homebrew, but I am not completely sure whether the final result is equivalent.
 
-### **Installing miniconda**
+### 1.9.1. **Installing miniconda**
 
 To install miniconda, access this [page](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html) and follow the instructions. (There are some special steps at the end because of zsh.)
 
-## **Python**
+## 1.10. **Python**
 
 Python is a popular language for developing data science models. The Python version that comes with MacOS is quite obsolete, so we will install a newer one with Homebrew.
 
-### **Installing Python**
+### 1.10.1. **Installing Python**
 
 It is simple to install python using Homebrew with the command `brew install python`. However, we do not recommend this approach, as different projects may ask for different python versions. Instead, we will manage Python and its packages through miniconda, following this [guide](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
@@ -293,7 +295,7 @@ dependencies:
 - python=3.7
 ```
 
-### **Creating an environment from an environment file**
+### 1.10.2. **Creating an environment from an environment file**
 
 To create the environment from that file -- say its name is `environment.yaml` -- , run: `conda env create -f environment.yaml`
 With this approach, an environment will be created at `~/miniconda/envs/ml`. It may be preferable to set the environment inside the project folder itself. To do so, change the command to
@@ -308,7 +310,7 @@ In this example, the steps above will create an environment with Python 3.7 in o
 
 (A very minimal way of creating an environment that could be used by multiple projects with a given python version is to run `conda create --name py35 python=3.5`. The conda base environment should also come with python and pip, which is a python package manager)
 
-### **Getting the list of all existing environments**
+### 1.10.3. **Getting the list of all existing environments**
 
 - To display all existing environments, run the command:
 
@@ -316,7 +318,7 @@ In this example, the steps above will create an environment with Python 3.7 in o
   conda env list
 ```
 
-### **Activating an environment**
+### 1.10.4. **Activating an environment**
 
 - To activate an environment inside, say, *./env*, run:
 
@@ -326,7 +328,7 @@ In this example, the steps above will create an environment with Python 3.7 in o
 
 You can double check that the environment was activated by running conda env list and checking which environment is singled out with a star (\*) symbol. If you installed Python with the environment file, you can also run `which python` to check that the environment path appears in the output.
 
-### **Listing packages installed in an environment**
+### 1.10.5. **Listing packages installed in an environment**
 
 - With an environment activated, run:
 
@@ -340,7 +342,7 @@ You can double check that the environment was activated by running conda env lis
   conda list --prefix <path_to_environment>
 ```
 
-### **Deactivating an environment**
+### 1.10.6. **Deactivating an environment**
 
 - To revert to the base environment, run:
 
@@ -348,23 +350,23 @@ You can double check that the environment was activated by running conda env lis
   conda deactivate
 ```
 
-### Deleting an environment**
+### 1.10.7. Deleting an environment**
 
-## **Text Editor: Visual Studio Code (VSCode)**
+## 1.11. **Text Editor: Visual Studio Code (VSCode)**
 
 One of the most important tools for a data scientist is the text editor. If using an editor remotely, you may not have much choice but to use whatever is available on the server. However, when working locally, I will go for the option that provides me the most comfort. There are many editors out there. In the context of data science work, I have had the chance ot use *Sublime*, *Atom* and *Visual Studio Code*. You can look up online for major differences between these editors -- and other options -- to make your call for an editor. I personally use VSCode because it has about the same features I have found in Sublime and Atom, but also comes with the unique feat of being able to run Jupyter notebooks inside the editor. I really enjoy this aspect, as it gives me the typical benefits of Jupyter coupled with any enhancements provided by the editor.
 
-### **Installing VSCode**
+### 1.11.1. **Installing VSCode**
 
 Follow this [link](https://code.visualstudio.com/docs/setup/mac) for installing VSCode on MacOS.
 
-### **Calling VSCode via the command line**
+### 1.11.2. **Calling VSCode via the command line**
 
 - With VSCode open, type *Command + Shift + P* to call the command palette;
 - Search for "Shell Command: Install 'code' command in PATH", and select it;
 - Restart your terminal and you should now be able to open VSCode with the command *code*.
 
-### **Integrating the VSCode terminal with ZSH**
+### 1.11.3. **Integrating the VSCode terminal with ZSH**
 
 VSCode has an integrated terminal. To bring it up, press *Control + `. To integrate it with zsh and our previous configurations:
 
@@ -378,7 +380,7 @@ VSCode has an integrated terminal. To bring it up, press *Control + `. To integr
 
 The first line contains the path to the zsh installed by Homebrew; the second line is the font type, which you can choose at your convenience (make sure it exists in your systems and that it supports the glyphs associated with P10k if you are using that theme).
 
-### **Beautifying VSCode**
+### 1.11.4. **Beautifying VSCode**
 
 We can rely on extensions to improve the looks of VSCode. Here are some extensions for improving visuals I recommend:
 
@@ -387,13 +389,14 @@ We can rely on extensions to improve the looks of VSCode. Here are some extensio
 
 The icon theme can be changed through by command palette by looking up "File Icon Theme").
 
-### **Useful Extensions**
+### 1.11.5. **Useful Extensions**
 
 Here is a list of useful extensions and what to expect from them:
 
 |Extension|Description|
 |---|---|
 |markdownlint|Linter for Markdown, to ensure some format standards (I used it to write this file!)|
+|Markdown All in One|Provides various resources to enhance writing markdown content|
 |Python|VSCode extension to support coding in Python|
 |Visual Studio IntelliCode|AI-driven Intellisense for VSCode}|
 |Trailing Spaces| Highlights trailing space for easy removal|
@@ -407,19 +410,19 @@ In the following links, you can find a few more sources:
 <https://medium.com/issuehunt/10-visual-studio-code-extensions-for-python-development-de0be51bbeed>
 <https://www.shopify.ca/partners/blog/best-visual-studio-code-extensions>
 
-## **Controlling environments with VSCode**
+## 1.12. **Controlling environments with VSCode**
 
 Just to recapitulate, you can set an environment folder named `env` inside your project folder by running `conda env create --prefix ./env -f environment.yaml`, where `environment.yaml` is the file with the required packages. (If something goes wrong, you can remove the environment by running `conda remove --prefix ./env --all`).
 
 If the environment is already in place, you can select it in VSCode by calling the command palette and looking for *"Python: Select Interpreter"*. Then, assuming your environment is the *env* folder inside your project, find the path `./env/bin/pythonx.x`, where the python version will depend on what you have specified on the environment file (do not forget to include python!). You can further confirm that this has worked by examining the local settings JSON for the variable *python.linting.pythonPath*, which should specify the python of that particular environment.
 
-## **Python Linters**
+## 1.13. **Python Linters**
 
 A linter is a tool that analyzes code and flag errors and violations of certain stylistic conventions. They are helpful in spotting bugs and errors earlier on, and in ensuring that the code conforms to some standards, which may make it easier to read and follow by peers.
 
 In Python, there are several linters. This [page](https://github.com/vintasoftware/python-linters-and-code-analysis) contains a very good summary of different linters and their functionalities in Python. Not all of them do the same thing, so I recommend using multiple linters. I have not yet figured out the ideal ones to have around, so I am currently combining *Pylint* and *Flake8*. I am also considering enabling *pydocstyle*, since it looks like its functionality is to inspect docstrings, as opposed to the code itself.
 
-### **Installing the Linters**
+### 1.13.1. **Installing the Linters**
 
 Since these linters are essentially python packages, they would be environment-dependent. We are going to install them at the conda base environment and discuss in the next sections how to configure VSCode to access these linters.
 
@@ -439,11 +442,11 @@ To install the linters on a given environment:
 
 To confirm that the packages have been installed, run `python` on your terminal and `import <linter_name>` to check that the packages are now available. You should also be able to see the packages at a folder named `bin` inside your environment folder
 
-### **Using the Linters with VSCode**
+### 1.13.2. **Using the Linters with VSCode**
 
 Though linters can be run directly (for example, to examine a file called `mycode.py` with Flake8, run `flake8 mycode.py`), I find them more useful when their functionality is coupled with a text editor that leverages their diagnosis and displays it on the code itself. To take advantage of that, we must enable linters on VSCode.
 
-#### **Enabling Linters on VSCode**
+#### 1.13.2.1. **Enabling Linters on VSCode**
 
 - call the command palette (*Command + Shift + P*), look up *Python: Enable Linting* and click on it
 
@@ -455,7 +458,7 @@ Remark: if you do the above while having a folder/project already open in VSCode
 
 - Install pylint, flake8 and pydocstyle (see the previous section) in the environment associated with the chosen Python interpreter
 
-#### **Adjusting the Linters verbosity in VSCode**
+#### 1.13.2.2. **Adjusting the Linters verbosity in VSCode**
 
 The verbosity of the linters Pylint, flake8 and pydocstyle use the following parameters on the settings JSON: *python.linting.pylintArgs*, *python.linting.flake8Args* and *python.pydocstyleArgs*", respectively (more info for additional linters can be found on the VSCode page). I usually set *python.linting.pylintArgs": ["--enable=F,E,W,C,R"]*, where the letters correspond to different kinds of messages pylint may display (F: fatal; E: error; W: warning; C: convention; R: refactoring). For flake8, the options are F, E and W. For pycodestyle, the options are E and W.
 

@@ -413,6 +413,7 @@ Here is a list of useful extensions and what to expect from them:
 |Better Comments|Helps with categorizing comments|
 |GitLens|Allows one to visualize code authorship (and much more) inside VSCode|
 |Path Intellisense|Completes filenames|
+|Rainbow CSV|Helps with visualizing CSV files|
 
 In the following links, you can find a few more sources:
 <https://medium.com/issuehunt/10-visual-studio-code-extensions-for-python-development-de0be51bbeed>

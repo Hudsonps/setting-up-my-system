@@ -410,7 +410,6 @@ Here is a list of useful extensions and what to expect from them:
 |Python Docstring Generator|Helps with generating docstrings (can be combined with type hint for contextually richer docstrings)
 |Visual Studio IntelliCode|AI-driven Intellisense for VSCode}|
 |Trailing Spaces| Highlights trailing space for easy removal|
-|Python Docstring Generator|Extension with docstring templates for python functions|
 |Code Runner|Allows one to run code snippets for multiple languages|
 |Better Comments|Helps with categorizing comments|
 |GitLens|Allows one to visualize code authorship (and much more) inside VSCode|

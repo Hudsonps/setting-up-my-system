@@ -11,6 +11,7 @@
   - [5.2. Setting up a color theme for iTerm2](#52-setting-up-a-color-theme-for-iterm2)
     - [5.2.1. My Personal Color Theme Recommendations](#521-my-personal-color-theme-recommendations)
       - [5.2.1.1. Optional: Bulk-removing color themes from iTerm2](#5211-optional-bulk-removing-color-themes-from-iterm2)
+  - [5.2.2. Setting up useful keyboard shortcuts](#522-setting-up-useful-keyboard-shortcuts)
 - [6. Shell: ZSH](#6-shell-zsh)
   - [6.1. Installing ZSH](#61-installing-zsh)
     - [6.1.1. Making MacOS use the Homebrew zsh](#611-making-macos-use-the-homebrew-zsh)
@@ -139,6 +140,24 @@ defaults delete com.googlecode.iterm2
 ```
 
 (I am not entirely sure whether this must be done while at *~/Library/Preferences/*, but you can double-check.)
+
+## 5.2.2. Setting up useful keyboard shortcuts
+
+To customize keyboard shortcuts, open iterm2 then go to *Preferences > Profiles > Keys*. Inside Keys, look for the tab *General*.
+
+- Backward Jumps:
+  - Change Left Option key to Esc+
+  - Go to the tab Key Mappings and click on the + button to add custom mappings
+  - Select *Send Escape Sequence*
+  - Start recording and press *⌥ + ←*
+  - On Esc+, input the letter b
+
+- Forward Jumps:
+  - Change Left Option key to Esc+
+  - Go to the tab Key Mappings and click on the + button to add custom mappings
+  - Select *Send Escape Sequence*
+  - Start recording and press *⌥+ →*
+  - On Esc+, input the letter f
 
 # 6. Shell: ZSH
 

@@ -426,7 +426,7 @@ Here is a list of useful extensions and what to expect from them:
 |Markdown Preview Enhanced|Enhances markdown preview functionality inside VSCode|
 |Python|VSCode extension to support coding in Python|
 |Python Type Hint|Extension that provides hints while specifying types in Python|
-|Python Docstring Generator|Helps with generating docstrings (can be combined with type hint for contextually richer docstrings)
+|autoDocString|Helps with generating docstrings (can be combined with type hint for contextually richer docstrings)
 |Visual Studio IntelliCode|AI-driven Intellisense for VSCode}|
 |Trailing Spaces| Highlights trailing space for easy removal|
 |Code Runner|Allows one to run code snippets for multiple languages|

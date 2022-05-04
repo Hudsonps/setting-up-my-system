@@ -450,7 +450,7 @@ If the environment is already in place, you can select it in VSCode by calling t
 
 A linter is a tool that analyzes code and flag errors and violations of certain stylistic conventions. They are helpful in spotting bugs and errors earlier on, and in ensuring that the code conforms to some standards, which may make it easier to read and follow by peers.
 
-In Python, there are several linters. This [page](https://github.com/vintasoftware/python-linters-and-code-analysis) contains a very good summary of different linters and their functionalities in Python. Not all of them do the same thing, so I recommend using multiple linters. I have not yet figured out the ideal ones to have around, so I am currently combining *Pylint* and *Flake8*. I am also considering enabling *pydocstyle*, since it looks like its functionality is to inspect docstrings, as opposed to the code itself.
+In Python, there are several linters. This [page](https://github.com/vintasoftware/python-linters-and-code-analysis) contains a summary of different linters and their functionalities in Python. Not all of them do the same thing, so I recommend using multiple linters. I have not yet figured out the ideal ones to have around, so I am currently combining *Pylint* and *Flake8*. I am also considering enabling *pydocstyle*, since it looks like its functionality is to inspect docstrings, as opposed to the code itself.
 
 ## 14.1. Installing the Linters
 
